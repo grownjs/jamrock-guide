@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html theme="dark">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Jamrock // Stores</title>
+    <meta name="release" content="5273cac">
+    <script src="//grown.jamrock.dev/scripts.js"></script>
+    <link rel="stylesheet" href="//grown.jamrock.dev/styles.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sorts+Mill+Goudy">
+    <style>/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; background: white; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+html[theme=dark] .hljs-comment, html[theme=dark] .hljs-quote { color: #969896; } html[theme=dark] .hljs-variable, html[theme=dark] .hljs-template-variable, html[theme=dark] .hljs-tag, html[theme=dark] .hljs-name, html[theme=dark] .hljs-selector-id, html[theme=dark] .hljs-selector-class, html[theme=dark] .hljs-regexp, html[theme=dark] .hljs-deletion { color: #cc6666; } html[theme=dark] .hljs-number, html[theme=dark] .hljs-built_in, html[theme=dark] .hljs-builtin-name, html[theme=dark] .hljs-literal, html[theme=dark] .hljs-type, html[theme=dark] .hljs-params, html[theme=dark] .hljs-meta, html[theme=dark] .hljs-link { color: #de935f; } html[theme=dark] .hljs-attribute { color: #f0c674; } html[theme=dark] .hljs-string, html[theme=dark] .hljs-symbol, html[theme=dark] .hljs-bullet, html[theme=dark] .hljs-addition { color: #b5bd68; } html[theme=dark] .hljs-title, html[theme=dark] .hljs-section { color: #81a2be; } html[theme=dark] .hljs-keyword, html[theme=dark] .hljs-selector-tag { color: #b294bb; } html[theme=dark] .hljs { display: block; overflow-x: auto; background: #1d1f21; color: #c5c8c6; padding: 0.5em; } html[theme=dark] .hljs-emphasis { font-style: italic; } html[theme=dark] .hljs-strong { font-weight: bold; }
+
+      blockquote b {
+        cursor: default;
+        font-style: normal;
+        margin-right: .2em;
+        padding-right: .2em;
+        display: inline-block;
+        text-align: center;
+        width: 1.5em;
+      }
+      blockquote > pre,
+      blockquote > p {
+        margin: 0;
+      }
+      #nav li:last-child {
+        flex: 1;
+      }
+      
+    </style>
+  </head>
+  <body class="reset">
+    <script>
+      /* eslint-disable */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', '', 'auto');
+      ga('send', 'pageview');
+      /* eslint-enable */
+      
+    </script>
+    <div id="wrapper">
+      <div class="body noscroll" id="content">
+        <div class="flex" id="menu">
+          <div class="stork-wrapper">
+            <pre>File not found: search.svg</pre>
+            <input class="stork-input" data-stork="docs" placeholder="Search...">
+            <div class="stork-output" data-stork="docs-output"></div>
+          </div><a href="/docs/stores/#nav">&#9776;</a>
+        </div>
+        <h1>Stores <small><a href="//github.com/grownjs/jamrock/blob/master/docs/docs/stores.md" target="_blank">&#9998;</a></small></h1>
+        <main><p>Components are able to render data but they can&#39;t keep any state, also, state may be dynamic and change over time... how to deal with?</p>
+<p>Using a session-store is the simplest way to keep a state between requests:</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
+
+  <span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">session</span>(<span class="hljs-string">&#x27;counter&#x27;</span>, <span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">let</span> count = counter;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>The <code>let count</code> assignment is required to get subscribed to the <code>counter</code> store, and to reactively update its value on the actual session as it changes.</p>
+<blockquote>
+<p><b>☞</b> If you&#39;re importing the stores from another module (we encourage it!) then the <code>let</code> assignment is not longer required.</p>
+</blockquote>
+<p>This <code>session</code> store is a high-level <em>writable</em>, but you can build up any kind of reactive stores as well:</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { readable } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
+
+  <span class="hljs-keyword">let</span> inc = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">readable</span>(inc, <span class="hljs-function"><span class="hljs-params">set</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">set</span>(++inc);
+    }, <span class="hljs-number">1000</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">clearInterval</span>(interval);
+  });
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">fragment</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;timer&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{#each timer}{this}{/each}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span>
+</code></pre>
+<p>Stores are consumed the same way as any other stream, as long it survives, it can keep sending changes to the browser.</p>
+<h2 id="server-api">Server API</h2>
+<p>All streams can be paused and resumed programmatically through hooks, e.g.</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> { readable } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
+  <span class="hljs-keyword">import</span> { useStream } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/hooks&#x27;</span>;
+
+  <span class="hljs-keyword">let</span> inc = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">readable</span>(inc, <span class="hljs-function"><span class="hljs-params">set</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title function_">set</span>(++inc);
+    }, <span class="hljs-number">1000</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">clearInterval</span>(interval);
+  });
+
+  <span class="hljs-keyword">const</span> $timer = <span class="hljs-title function_">useStream</span>({ timer });
+
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    <span class="hljs-title function_">pause</span>(<span class="hljs-params"></span>) {
+      $timer.<span class="hljs-title function_">pause</span>();
+    },
+    <span class="hljs-title function_">toggle</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">if</span> ($timer.<span class="hljs-property">idle</span>) {
+        $timer.<span class="hljs-title function_">resume</span>();
+      } <span class="hljs-keyword">else</span> {
+        $timer.<span class="hljs-title function_">pause</span>();
+      }
+    },
+  };
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">on:click</span> @<span class="hljs-attr">trigger</span>=<span class="hljs-string">&quot;pause&quot;</span>&gt;</span>⏸︎<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">on:click</span> @<span class="hljs-attr">trigger</span>=<span class="hljs-string">&quot;toggle&quot;</span>&gt;</span>⏯︎<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">fragment</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;timer&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{#each timer}{this}{/each}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><b>☞</b> The <code>useStream</code> hook allow to manage multiple streams at once, specified by key,
+but it&#39;ll work on <code>{#each}...{/each}</code> blocks only.</p>
+</blockquote>
+<p>...actually, refine that api... it should illustrate how <code>useFragment()</code> work as well...</p>
+<h2 id="client-api">Client API</h2>
+<p>We&#39;re using a modified version of <code>svelte/store</code> to actually provide the primitives for readables, writables and such.</p>
+<h3 id="static-methods">Static methods</h3>
+<ul>
+<li><code>get(store)</code> &mdash; Retrieves the store value.</li>
+<li><code>valid(store)</code> &mdash; Returns <code>true</code> if the store is supported.</li>
+<li><code>session(key[, value])</code> &mdash; Return a <code>writable()</code> for the given session <code>key</code> and <code>value</code> as default.</li>
+<li><code>derived(stores, fn[, value])</code> &mdash; Returns a new store from given dependencies.</li>
+<li><code>writable(value[, callback])</code> &mdash; Returns a new store that allows updates.</li>
+<li><code>readable(value[, callback])</code> &mdash; Returns a new store in read-only mode.</li>
+</ul>
+<blockquote>
+<p><b>☞</b> Writable stores can receive <code>value</code> as a function (with access to the actual request!) that will be invoked prior rendering to sync its contents.</p>
+</blockquote>
+</main>
+        <nav class="flex end gap"><span class="auto">➯ Next: <a id="next" href="docs/hooks">Hooks</a></span><a id="back" href="/docs/stores/#" onclick="content.scrollTop=0">&uarr; Back to the top</a>
+        </nav>
+      </div>
+      <aside class="noscroll" id="sidebar">
+        <div class="body">
+          <h1 class="logotype"><a href=".">
+              <pre>File not found: jamrock.svg</pre></a><small>v0.0.0</small></h1>
+          <hr>
+          <p class="flex">
+            <button id="toggle">
+              <pre>File not found: bulb.svg</pre>
+            </button><small>Reference docs for Jamrock</small>
+          </p>
+          <hr>
+          <div class="flex fit gap push"><a href="//badge.fury.io/js/grown" target="_blank"><img src="//badge.fury.io/js/grown.svg"></a><a href="//codecov.io/gh/grownjs/grown" target="_blank"><img src="//codecov.io/gh/grownjs/grown/branch/master/graph/badge.svg"></a><a href="//github.com/grownjs/grown/actions" target="_blank"><img src="//github.com/grownjs/grown/workflows/build/badge.svg"></a></div>
+          <nav id="nav">
+            <ul class="reset">
+              <li>
+                <h3 class="reset">Overview</h3>
+                <ul class="reset">
+                  <li>
+                    <a exact="true" href=".">Introduction</a>
+                  </li>
+                  <li>
+                    <a href="./docs/components">Components</a>
+                  </li>
+                  <li>
+                    <a href="./docs/fragments">Fragments</a>
+                  </li>
+                  <li>
+                    <a aria-current="page" href="./docs/stores">Stores</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Module</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/hooks">Hooks</a>
+                  </li>
+                  <li>
+                    <a href="./docs/routes">Routes</a>
+                  </li>
+                  <li>
+                    <a href="./docs/handlers">Handlers</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">State</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/session">Session</a>
+                  </li>
+                  <li>
+                    <a href="./docs/models">Models</a>
+                  </li>
+                  <li>
+                    <a href="./docs/cache">Cache</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Context</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/auth">Auth</a>
+                  </li>
+                  <li>
+                    <a href="./docs/access">Access</a>
+                  </li>
+                  <li>
+                    <a href="./docs/request">Request</a>
+                  </li>
+                  <li>
+                    <a href="./docs/response">Response</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Utilities</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/cli">CLI usage</a>
+                  </li>
+                  <li>
+                    <a href="./docs/mailer">Mailer and templates</a>
+                  </li>
+                  <li>
+                    <a href="./docs/uploads">Uploads and static files</a>
+                  </li>
+                  <li>
+                    <a href="./docs/database">Databases and scaffolding</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+    </div>
+    <script src="//files.stork-search.net/stork.js"></script>
+    <script>
+      window.stork.register('docs', 'index.st', {
+        minimumQueryLength: 2,
+      }); // eslint-disable-line
+    </script>
+  </body>
+</html>

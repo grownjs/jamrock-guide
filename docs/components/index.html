@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html theme="dark">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Jamrock // Components</title>
+    <meta name="release" content="5273cac">
+    <script src="//grown.jamrock.dev/scripts.js"></script>
+    <link rel="stylesheet" href="//grown.jamrock.dev/styles.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sorts+Mill+Goudy">
+    <style>/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; background: white; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+html[theme=dark] .hljs-comment, html[theme=dark] .hljs-quote { color: #969896; } html[theme=dark] .hljs-variable, html[theme=dark] .hljs-template-variable, html[theme=dark] .hljs-tag, html[theme=dark] .hljs-name, html[theme=dark] .hljs-selector-id, html[theme=dark] .hljs-selector-class, html[theme=dark] .hljs-regexp, html[theme=dark] .hljs-deletion { color: #cc6666; } html[theme=dark] .hljs-number, html[theme=dark] .hljs-built_in, html[theme=dark] .hljs-builtin-name, html[theme=dark] .hljs-literal, html[theme=dark] .hljs-type, html[theme=dark] .hljs-params, html[theme=dark] .hljs-meta, html[theme=dark] .hljs-link { color: #de935f; } html[theme=dark] .hljs-attribute { color: #f0c674; } html[theme=dark] .hljs-string, html[theme=dark] .hljs-symbol, html[theme=dark] .hljs-bullet, html[theme=dark] .hljs-addition { color: #b5bd68; } html[theme=dark] .hljs-title, html[theme=dark] .hljs-section { color: #81a2be; } html[theme=dark] .hljs-keyword, html[theme=dark] .hljs-selector-tag { color: #b294bb; } html[theme=dark] .hljs { display: block; overflow-x: auto; background: #1d1f21; color: #c5c8c6; padding: 0.5em; } html[theme=dark] .hljs-emphasis { font-style: italic; } html[theme=dark] .hljs-strong { font-weight: bold; }
+
+      blockquote b {
+        cursor: default;
+        font-style: normal;
+        margin-right: .2em;
+        padding-right: .2em;
+        display: inline-block;
+        text-align: center;
+        width: 1.5em;
+      }
+      blockquote > pre,
+      blockquote > p {
+        margin: 0;
+      }
+      #nav li:last-child {
+        flex: 1;
+      }
+      
+    </style>
+  </head>
+  <body class="reset">
+    <script>
+      /* eslint-disable */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', '', 'auto');
+      ga('send', 'pageview');
+      /* eslint-enable */
+      
+    </script>
+    <div id="wrapper">
+      <div class="body noscroll" id="content">
+        <div class="flex" id="menu">
+          <div class="stork-wrapper">
+            <pre>File not found: search.svg</pre>
+            <input class="stork-input" data-stork="docs" placeholder="Search...">
+            <div class="stork-output" data-stork="docs-output"></div>
+          </div><a href="/docs/components/#nav">&#9776;</a>
+        </div>
+        <h1>Components <small><a href="//github.com/grownjs/jamrock/blob/master/docs/docs/components.md" target="_blank">&#9998;</a></small></h1>
+        <main><p><strong>Jamrock</strong> lets you extract and combine existing markup and behavior through components.</p>
+<p>As their front-end counterparts, they can encapsulate markup and styles, but JavaScript will not run on the browser.</p>
+<p>So, you&#39;ll be asking... how we handle any user-interaction?</p>
+<h2 id="life-cycle-events">Life-cycle &amp; events:</h2>
+<ul>
+<li>A component&#39;s life starts with a request to our web-server, once executed it gets disposed and does not get executed until the next request.</li>
+<li>User input can be sent by using <code>&lt;form&gt;</code> elements, plain <code>&lt;a&gt;</code> links can provide input too, as well with XHR/fetch calls, etc.</li>
+<li>Live user-events and input can be sent to the backend using WebSockets or XHR/fetch, whatever is available.</li>
+</ul>
+<blockquote>
+<p><b>☞</b> When streams or fragments are used, some functions can remain running even after the request is actually done, but not the component.</p>
+</blockquote>
+<h2 id="files-directories">Files &amp; directories</h2>
+<p>At this point, you may want to write some code already, so lets put it where belongs:</p>
+<pre class="hljs">
+├── app
+│     └── <b>pages          &larr; server-side components</b>
+├── routes
+└── shared
+      └── server.js
+</pre>
+
+<p>Depending on its location, the resulting routes:</p>
+<ul>
+<li><code>app/pages/my/$area.html</code> &rarr; <code>/my/:area</code> (page)</li>
+<li><code>routes/$user.edit.js</code> &rarr; <code>/:user/edit</code> (api)</li>
+<li><code>routes/test/index.js</code> &rarr; <code>/test/*</code> (api)</li>
+<li><code>app/pages/index.html</code> &rarr; <code>/*</code> (page)</li>
+</ul>
+<blockquote>
+<p><b>✄</b> The code you&#39;ll need in <code>server.js</code>:</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-keyword">const</span> server = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jamrock/server&#x27;</span>);
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = server.<span class="hljs-title function_">init</span>();
+</code></pre>
+</blockquote>
+<p>Now you have two options to create routes: either on <code>app/pages</code> for <code>.html</code> components, or in <code>routes</code> for <code>.js</code> handlers.</p>
+<h3 id="route-handlers">Route handlers</h3>
+<p>They are function modules, or objects, exposing some functions to act as request handlers, i.e.</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// routes/example/index.js</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function"><span class="hljs-params">conn</span> =&gt;</span> <span class="hljs-string">`
+  &lt;h1&gt;<span class="hljs-subst">${conn.req.originalUrl}</span>&lt;/h1&gt;
+`</span>;
+</code></pre>
+<p>Returned value determines the response type, otherwise you should use the <code>conn</code> argument to set a response.</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// routes/logout.js</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">as</span>: <span class="hljs-string">&#x27;logout_path&#x27;</span>,
+  <span class="hljs-title function_">DELETE</span>(<span class="hljs-params">conn</span>) {
+    conn.<span class="hljs-title function_">delete_session</span>([<span class="hljs-string">&#x27;user_auth&#x27;</span>]);
+    conn.<span class="hljs-title function_">put_flash</span>(<span class="hljs-string">&#x27;success&#x27;</span>, <span class="hljs-string">&#x27;Good bye!&#x27;</span>);
+    conn.<span class="hljs-title function_">redirect</span>(conn.<span class="hljs-property">routes</span>.<span class="hljs-title function_">login_page</span>());
+  },
+};
+</code></pre>
+<p>Named methods matching <code>/^(GET|PUT|POST|PATCH|DELETE)/</code> will be used to sub-route the requested path.</p>
+<blockquote>
+<p><b>☞</b> The <code>as</code> property is used to make reference to other routes, so <code>conn.routes.logout_path()</code> will work as expected.</p>
+</blockquote>
+<h3 id="page-components">Page components</h3>
+<p>Without sprinkling on them JavaScript or <code>{data}</code> they&#39;re just templates with super-powers.</p>
+<p>However, data can be rendered on the template in several ways:</p>
+<ul>
+<li><code>{value}</code> &mdash; render the escaped value as content, given as prop it&#39;ll be passed without modifications.</li>
+<li><code>{@html value}</code> &mdash; render the unescaped value as content, given as prop <code>@html</code> will set the <code>innerHTML</code> instead.</li>
+<li><code>{@debug value}</code> &mdash; output the inspected value on the browser and server, it also renders the result of <code>JSON.stringify(value)</code>.</li>
+<li><code>{#if expr1}...[{:else[ if expr2]}...]{/if}</code> &mdash; single block that renders the resulting value of their if-then-else logic.</li>
+<li><code>{#each value[ as expr[, offset]]}...[{:else}...]{/each}</code> &mdash; repeated block that renders the result of each iteration logic.</li>
+</ul>
+<p>Used data and props are allocated through <code>import</code>, <code>export</code>, <code>let</code>, <code>const</code> and <code>function</code> declarations, e.g.</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">import</span> <span class="hljs-title class_">Test</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../path/to/component&#x27;</span>;
+
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> prop = <span class="hljs-string">&#x27;default value&#x27;</span>;
+
+  <span class="hljs-keyword">const</span> truth = <span class="hljs-number">42</span>;
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">caps</span>(<span class="hljs-params">value</span>) {
+    <span class="hljs-keyword">return</span> value.<span class="hljs-title function_">toUpperCase</span>();
+  }
+
+  <span class="hljs-attr">$</span>: test = <span class="hljs-title function_">caps</span>(prop);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><b>☞</b> Expressions after <code>$:</code> are always executed whenever any used value within changes.</p>
+</blockquote>
+<p>Now, the variables <code>Test</code>, <code>prop</code>, <code>truth</code>, <code>caps</code> and <code>test</code> can be used in the template:</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">Test</span> <span class="hljs-attr">result</span>=<span class="hljs-string">{truth}</span>&gt;</span>
+  ({test})
+<span class="hljs-tag">&lt;/<span class="hljs-name">Test</span>&gt;</span>
+</code></pre>
+<p>The template for the <code>Test</code> component could be written like this:</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> result = -<span class="hljs-number">1</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+{result}: <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span>NADA<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><b>☞</b> Only variables that were <code>export</code>&#39;ed can be received as props, using <code>const</code> to declare read-only props is encouraged.</p>
+</blockquote>
+<p>Lets see... guessing a bit, the result should be <code>42: (DEFAULT VALUE)</code> right?</p>
+<p>If you execute the <code>Test</code> component as a page, it should render <code>-1: NADA</code> as you probably guessed.</p>
+<blockquote>
+<p><b>☞</b> Playing around with components, attributes and slots, you can build rich web-pages with ease.</p>
+</blockquote>
+<h3 id="iterating-values">Iterating values</h3>
+<p>Not all variables can be rendered on the template as is, but you can iterate almost any value, e.g.</p>
+<pre class="hljs"><code class="lang-html">{#each [1, 2, 3] as nth}
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{nth}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+{/each}
+</code></pre>
+<p>Any value that can be iterated will be iterated, so strings and numbers are also valid values,
+for numbers it&#39;s more like &quot;run this loop N times&quot; while for strings will iterate each character, etc.</p>
+<blockquote>
+<p><b>⚠</b> Expression support is limited for both sides of the <code>as</code> operator, only <code>... as item, index</code> and <code>... as [...], index</code> are granted to work.</p>
+</blockquote>
+<p>Promises are always resolved prior rendering, and also, they are resolved when passed down as props.</p>
+<blockquote>
+<p><b>☞</b> The main <code>&lt;script&gt;</code> tag also supports top-level <code>await</code>, so you can do asynchronous stuff during its execution,
+just consider that these calls will take their time...</p>
+</blockquote>
+<p>Iterators, and generators, are instantiated on render-time, but they&#39;re not awaited until their completion.</p>
+<p>They&#39;re allocated as streams within the rendering pipeline, then are consumed to render a few items, and finally, they&#39;ll continue running on the background.</p>
+<blockquote>
+<p><b>☞</b> Resulting fragments are sent through WebSockets and applied on the target DOM.</p>
+</blockquote>
+</main>
+        <nav class="flex end gap"><span class="auto">➯ Next: <a id="next" href="docs/fragments">Fragments</a></span><a id="back" href="/docs/components/#" onclick="content.scrollTop=0">&uarr; Back to the top</a>
+        </nav>
+      </div>
+      <aside class="noscroll" id="sidebar">
+        <div class="body">
+          <h1 class="logotype"><a href=".">
+              <pre>File not found: jamrock.svg</pre></a><small>v0.0.0</small></h1>
+          <hr>
+          <p class="flex">
+            <button id="toggle">
+              <pre>File not found: bulb.svg</pre>
+            </button><small>Reference docs for Jamrock</small>
+          </p>
+          <hr>
+          <div class="flex fit gap push"><a href="//badge.fury.io/js/grown" target="_blank"><img src="//badge.fury.io/js/grown.svg"></a><a href="//codecov.io/gh/grownjs/grown" target="_blank"><img src="//codecov.io/gh/grownjs/grown/branch/master/graph/badge.svg"></a><a href="//github.com/grownjs/grown/actions" target="_blank"><img src="//github.com/grownjs/grown/workflows/build/badge.svg"></a></div>
+          <nav id="nav">
+            <ul class="reset">
+              <li>
+                <h3 class="reset">Overview</h3>
+                <ul class="reset">
+                  <li>
+                    <a exact="true" href=".">Introduction</a>
+                  </li>
+                  <li>
+                    <a aria-current="page" href="./docs/components">Components</a>
+                  </li>
+                  <li>
+                    <a href="./docs/fragments">Fragments</a>
+                  </li>
+                  <li>
+                    <a href="./docs/stores">Stores</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Module</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/hooks">Hooks</a>
+                  </li>
+                  <li>
+                    <a href="./docs/routes">Routes</a>
+                  </li>
+                  <li>
+                    <a href="./docs/handlers">Handlers</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">State</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/session">Session</a>
+                  </li>
+                  <li>
+                    <a href="./docs/models">Models</a>
+                  </li>
+                  <li>
+                    <a href="./docs/cache">Cache</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Context</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/auth">Auth</a>
+                  </li>
+                  <li>
+                    <a href="./docs/access">Access</a>
+                  </li>
+                  <li>
+                    <a href="./docs/request">Request</a>
+                  </li>
+                  <li>
+                    <a href="./docs/response">Response</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h3 class="reset">Utilities</h3>
+                <ul class="reset">
+                  <li>
+                    <a href="./docs/cli">CLI usage</a>
+                  </li>
+                  <li>
+                    <a href="./docs/mailer">Mailer and templates</a>
+                  </li>
+                  <li>
+                    <a href="./docs/uploads">Uploads and static files</a>
+                  </li>
+                  <li>
+                    <a href="./docs/database">Databases and scaffolding</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+    </div>
+    <script src="//files.stork-search.net/stork.js"></script>
+    <script>
+      window.stork.register('docs', 'index.st', {
+        minimumQueryLength: 2,
+      }); // eslint-disable-line
+    </script>
+  </body>
+</html>
