@@ -1,0 +1,9 @@
+.git
+.env
+*.todo
+.DS_Store
+cache.json
+index.toml
+node_modules
+build
+dist

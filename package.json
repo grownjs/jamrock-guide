@@ -1,0 +1,24 @@
+{
+  "name": "jamrock-guide",
+  "version": "0.0.0",
+  "description": "Reference docs for Jamrock",
+  "main": "public/index.html",
+  "scripts": {
+    "mortero": "mortero -Ddist -r '**:{filepath/1}'",
+    "index": "mortero -kmain -Dbuild > index.toml && stork build --input index.toml --output build/index.st",
+    "pages": "mortero docs -p3031 -cpublic:. -Dbuild -Xpartials -r '**/!(index).html:{basedir}/{name}/index.html;docs/**:{filepath/1}' --kramed.highlight=true",
+    "build": "npm run pages && npm run index"
+  },
+  "author": "Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grownjs/jamrock-docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "highlight.js": "^11.5.0",
+    "kramed": "^0.5.6",
+    "mortero": "^0.0.60",
+    "pug": "^3.0.2"
+  }
+}
