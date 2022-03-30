@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Jamrock // Introduction</title>
-    <meta name="release" content="a808cbb">
+    <meta name="release" content="a2c0a8b">
     <script src="//grown.jamrock.dev/scripts.js"></script>
     <link rel="stylesheet" href="//grown.jamrock.dev/styles.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sorts+Mill+Goudy">
@@ -34,24 +34,24 @@ html[theme=dark] .hljs-comment, html[theme=dark] .hljs-quote { color: #969896; }
     </style>
   </head>
   <body class="reset">
+    <svg width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="0 0 16 16" id="icon-alert" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"/></symbol><symbol viewBox="0 0 16 16" id="icon-beaker" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 010-1.5h6.5a.75.75 0 010 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 01-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 019.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 01-.633 1.153H3.233a.75.75 0 01-.633-1.153z"/></symbol><symbol viewBox="0 0 16 16" id="icon-code" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.72 3.22a.75.75 0 011.06 1.06L2.06 8l3.72 3.72a.75.75 0 11-1.06 1.06L.47 8.53a.75.75 0 010-1.06l4.25-4.25zm6.56 0a.75.75 0 10-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 101.06 1.06l4.25-4.25a.75.75 0 000-1.06l-4.25-4.25z"/></symbol><symbol viewBox="0 0 16 16" id="icon-pin" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.456.734a1.75 1.75 0 012.826.504l.613 1.327a3.081 3.081 0 002.084 1.707l2.454.584c1.332.317 1.8 1.972.832 2.94L11.06 10l3.72 3.72a.75.75 0 11-1.061 1.06L10 11.06l-2.204 2.205c-.968.968-2.623.5-2.94-.832l-.584-2.454a3.081 3.081 0 00-1.707-2.084l-1.327-.613a1.75 1.75 0 01-.504-2.826L4.456.734zM5.92 1.866a.25.25 0 00-.404-.072L1.794 5.516a.25.25 0 00.072.404l1.328.613A4.582 4.582 0 015.73 9.63l.584 2.454a.25.25 0 00.42.12l5.47-5.47a.25.25 0 00-.12-.42L9.63 5.73a4.581 4.581 0 01-3.098-2.537L5.92 1.866z"/></symbol><symbol viewBox="0 0 16 16" id="icon-search" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"/></symbol></svg>
     <div id="wrapper">
       <div class="body noscroll" id="content">
         <div class="flex" id="menu">
           <div class="stork-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
-
+            <svg width="16" height="16"><use xlink:href="#icon-search"></use></svg>
             <input class="stork-input" data-stork="docs" placeholder="Search...">
             <div class="stork-output" data-stork="docs-output"></div>
           </div><a href="./#nav">&#9776;</a>
         </div>
         <h1>Introduction <small><a href="//github.com/grownjs/jamrock/blob/master/docs/index.md" target="_blank">&#9998;</a></small></h1>
         <main><p><strong>Jamrock</strong> is a web framework for NodeJS that use server-side components to tie logic and presentation together.</p>
-<h2 id="we-did-stole-great-ideas">We did stole great ideas</h2>
 <p>Most syntax is based on the <a href="https://github.com/htmlx-org/HTMLx">HTMLx</a> specification (which is used by <a href="https://svelte.dev/">Svelte</a>),
 however its behavior may not be the same, as the components are meant to run completely on the back-end.</p>
-<p>Behavior will try to follow what <a href="https://hotwired.dev/">Hotwire</a> and <a href="https://remix.run/">Remix</a> do, so actual forms are used,
-and there&#39;s built-in support for WebSockets on the whole stack.</p>
-<h3 id="example-usage">Example usage</h3>
+<p>Behavior will try to follow what <a href="https://hotwired.dev/">Hotwire</a> and <a href="https://remix.run/">Remix</a> do,
+if JavaScript is enabled on the client-side all pages rendered will be progressively enhanced.</p>
+<h2 id="usage-principles">Usage principles</h2>
+<p>We believe static pages are the best solution for most use-cases, and then just sprinkle JavaScript to improve the usability.</p>
 <pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { session, put_session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/conn&#x27;</span>;
 
@@ -64,24 +64,34 @@ and there&#39;s built-in support for WebSockets on the whole stack.</p>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, {name}.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind:value</span> /&gt;</span>
 </code></pre>
-<ul>
+<ol>
 <li>In the example above, we&#39;re capitalizing the <code>value</code> variable when it changes, inside the <code>$:</code> label.</li>
 <li>We also update the session through <code>put_session()</code> because the session object is read-only.</li>
-<li>The template renders the actual <code>name</code> and listen for changes on the input&#39;s <code>value</code>.</li>
-</ul>
-<p>On every change on the input field a <code>PATCH</code> request is made, in response, the framework
+<li>The template renders the actual <code>name</code> and listen for changes on the <code>&lt;input&gt;</code>&#39;s <code>value</code>.</li>
+<li>We also have an <code>&lt;input&gt;</code> element that binds the <code>value</code> variable/attribute.</li>
+</ol>
+<h3 id="what-will-happen-you-might-ask-%F0%9F%A4%94">What will happen you might ask? 🤔</h3>
+<p>On every change on the <code>&lt;input&gt;</code> field a <code>PATCH</code> request is made, in response, the framework
 execute and render the requested component and then it sends the changes back to the browser.</p>
-<p>On the client-side, Jamrock will patch the actual DOM with the response&#39;s changes, including stylesheets and executing given scripts.</p>
-<!--
-> <b>ℹ</b> Some info<br />
-> <b>⚠</b> Take care!<br />
-> <b>¿</b> Why is this?<br />
-> <b>✎</b> Write your...<br />
-> <b>☞</b> Follow...<br />
-> <b>❏</b> Check item<br />
-> <b>♲</b> Ensure reuse<br />
-> <b>✄</b> Copy the code<br />
--->
+<p>On the client-side, Jamrock will patch the actual DOM with the response&#39;s changes, including stylesheets and executing any given scripts.</p>
+<p>However, this example will not work if you disable JavaScript on your browser.</p>
+<h3 id="working-without-the-necessity-of-javascript-%F0%9F%91%80">Working without the necessity of JavaScript 👀</h3>
+<p>In order to fix the previous example, we need to solve this client-side issue: triggering actions on user input.</p>
+<p>The solution is pretty simple actually, might not be as reactive than listening for <code>oninput</code> events, but it&#39;ll work:</p>
+<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">patch</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind:value</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<ol>
+<li>The framework will enhance the <code>&lt;form&gt;</code> to include the appropriate <code>method</code> and hidden fields to handle the <code>PATCH</code> request.</li>
+<li>The added <code>&lt;input&gt;</code> for submit will trigger the form as usual, that will request the page as expected if JavaScript were enabled.</li>
+</ol>
+<p>The only downside on this approach is that you&#39;ll lost the focus on the <code>&lt;input&gt;</code> field if you press <kbd>ENTER</kbd> while you&#39;re typing.</p>
+<h2 id="conclussions">Conclussions</h2>
+<p>Working this way you&#39;ll enable more users consuming your web-pages without charge them with the penalty of the complexity in your software.</p>
+<p>Your code may stay complex and so, but on the server-side, where you won&#39;t hurt the final user experience.</p>
+<p>Also, using static pages have a lot of benefits for caching, search-engine optimization, etc.</p>
 </main>
         <nav class="flex end gap"><span class="auto">➯ Next: <a id="next" href="docs/components">Components</a></span><a id="back" href="./#" onclick="content.scrollTop=0">&uarr; Back to the top</a>
         </nav>
