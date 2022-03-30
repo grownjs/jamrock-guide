@@ -6,6 +6,8 @@ next:
   link: docs/fragments
 ---
 
+TODO: rework...
+
 **Jamrock** lets you extract and combine existing markup and behavior through components.
 
 As their front-end counterparts, they can encapsulate markup and styles, but JavaScript will not run on the browser.
@@ -17,8 +19,6 @@ So, you'll be asking... how we handle any user-interaction?
 - A component's life starts with a request to our web-server, once executed it gets disposed and does not get executed until the next request.
 - User input can be sent by using `<form>` elements, plain `<a>` links can provide input too, as well with XHR/fetch calls, etc.
 - Live user-events and input can be sent to the backend using WebSockets or XHR/fetch, whatever is available.
-
-> <b>☞</b> When streams or fragments are used, some functions can remain running even after the request is actually done, but not the component.
 
 ## Files & directories
 
@@ -32,17 +32,18 @@ At this point, you may want to write some code already, so lets put it where bel
       └── server.js
 </pre>
 
-Depending on its location, the resulting routes:
+Depending on its location, the resulting routes are:
 
 - `app/pages/my/$area.html` &rarr; `/my/:area` (page)
 - `routes/$user.edit.js` &rarr; `/:user/edit` (api)
 - `routes/test/index.js` &rarr; `/test/*` (api)
 - `app/pages/index.html` &rarr; `/*` (page)
 
-> <b>✄</b> The code you'll need in `server.js`:
+> {@icon src="#code" width=16 height=16} The code you'll need in `shared/server.js`:
 >
 > ```js
 > const server = require('jamrock/server');
+>
 > module.exports = server.init();
 > ```
 

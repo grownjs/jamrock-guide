@@ -40,6 +40,8 @@ html(theme='dark')
       }
 
   body.reset
+    import(from='sprites.svg')
+
     if NODE_ENV === 'production'
       script.
         /* eslint-disable */
@@ -61,7 +63,7 @@ html(theme='dark')
 
         #menu.flex
           .stork-wrapper
-            import(from='search.svg')
+            icon(src='#search' width=16 height=16)
             input.stork-input(data-stork='docs' placeholder='Search...')
             .stork-output(data-stork='docs-output')
           a(href=`${location.pathname === '/' ? '.' : location.pathname}/#nav`) &#9776;
