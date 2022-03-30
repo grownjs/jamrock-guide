@@ -68,7 +68,6 @@ if JavaScript is enabled on the client-side all pages rendered will be progressi
 <li>In the example above, we&#39;re capitalizing the <code>value</code> variable when it changes, inside the <code>$:</code> label.</li>
 <li>We also update the session through <code>put_session()</code> because the session object is read-only.</li>
 <li>The template renders the actual <code>name</code> and listen for changes on the <code>&lt;input&gt;</code>&#39;s <code>value</code>.</li>
-<li>We also have an <code>&lt;input&gt;</code> element that binds the <code>value</code> variable/attribute.</li>
 </ol>
 <h3 id="what-will-happen-you-might-ask-%F0%9F%A4%94">What will happen you might ask? 🤔</h3>
 <p>On every change on the <code>&lt;input&gt;</code> field a <code>PATCH</code> request is made, in response, the framework
