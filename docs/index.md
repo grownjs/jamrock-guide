@@ -8,58 +8,38 @@ next:
 
 **Jamrock** is a web framework for NodeJS that use server-side components to tie logic and presentation together.
 
-## What's stolen from other web frameworks?
+## We did stole great ideas
 
-I think is not fair to compare with those powerful tooling that already exists, but if you're familiar, it'll help to understand it better:
-**Jamrock** looks like [Svelte](https://svelte.dev/) but tries to behave as [Hotwire](https://hotwired.dev/), [Remix](https://remix.run/) and such.
+Most syntax is based on the [HTMLx](https://github.com/htmlx-org/HTMLx) specification (which is used by [Svelte](https://svelte.dev/)),
+however its behavior may not be the same, as the components are meant to run completely on the back-end.
 
-- It compiles components into NodeJS modules instead, those are executed on every request, so they're stateless by default.
-- The user input is only available through HTML forms, once sent, the request handler is executed again and a new render is produced.
-- We made all logic within request handlers reactive, using iterators and generators we can also keep sending live updates if WebSockets are available.
+Behavior will try to follow what [Hotwire](https://hotwired.dev/) and [Remix](https://remix.run/) do, so actual forms are used,
+and there's built-in support for WebSockets on the whole stack.
 
-## A picture is worth a thousand words:
-
-- In the example below, we're capitalizing the `value` variable when it changes, inside the `$:` label.
-- When the page is requested through `POST` then their respective handler will be executed too, that updates the `value` variable.
-- That `value` is also rendered on the page's title, as well in the main heading. The form below display and captures the user input, containing the `value` parameter.
+### Example usage
 
 ```html
 <script>
-  import { body_params } from 'jamrock/conn';
+  import { session, put_session } from 'jamrock/conn';
 
-  let value = 'Jude';
+  export let value = session.name || 'world';
 
-  export default {
-    POST() {
-      value = body_params.value;
-    },
-  };
-
-  $: value = value.toUpperCase();
+  $: name = value.toUpperCase();
+  $: put_session('name', value);
 </script>
 
-<head>
-  <title>Hey, {value}!</title>
-</head>
-
-<h1>Hey, {value}:</h1>
-
-<form method="post">
-  <label>
-    What's your name?
-    <input type="text" name="value" {value} />
-  </label>
-  <button type="submit">
-    Submit
-  </button>
-</form>
+<p>Hello, {name}.</p>
+<input bind:value />
 ```
 
-The results are far away from what you can achieve with a little more code, but in essence it's enough for a dynamic web page.
+- In the example above, we're capitalizing the `value` variable when it changes, inside the `$:` label.
+- We also update the session through `put_session()` because the session object is read-only.
+- The template renders the actual `name` and listen for changes on the input's `value`.
 
-Try adding the `@async` attribute to the `<form>` tag in order to make the request/response calls run with JavaScript.
+On every change on the input field a `PATCH` request is made, in response, the framework
+execute and render the requested component and then it sends the changes back to the browser.
 
-> <b>☞</b> Just keep reading to know a bit of everything, starting from what components are and how they are resolved and executed by the framework.
+On the client-side, Jamrock will patch the actual DOM with the response's changes, including stylesheets and executing given scripts.
 
 <!--
 > <b>ℹ</b> Some info<br />
