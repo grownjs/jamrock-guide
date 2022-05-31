@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Jamrock // Introduction</title>
-    <meta name="release" content="a2c0a8b">
+    <meta name="release" content="202b558">
     <script src="//grown.jamrock.dev/scripts.js"></script>
     <link rel="stylesheet" href="//grown.jamrock.dev/styles.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sorts+Mill+Goudy">
@@ -50,8 +50,69 @@ html[theme=dark] .hljs-comment, html[theme=dark] .hljs-quote { color: #969896; }
 however its behavior may not be the same, as the components are meant to run completely on the back-end.</p>
 <p>Behavior will try to follow what <a href="https://hotwired.dev/">Hotwire</a> and <a href="https://remix.run/">Remix</a> do,
 if JavaScript is enabled on the client-side all pages rendered will be progressively enhanced.</p>
+<h2 id="files-directories">Files &amp; directories</h2>
+<p>We recommend you to use an <strong>app</strong> folder to group the required stuff for your web pages:</p>
+<pre class="hljs">
+├── app
+│  ├── assets
+│  │  ├── scripts
+│  │  └── styles
+│  ├── client
+│  └── pages
+├── routes
+└── shared
+      └── server.js
+</pre>
+
+<p>Depending on its location, the resulting routes will be:</p>
+<ul>
+<li><code>app/pages/my/$area.html</code> &rarr; <code>/my/:area</code> (page)</li>
+<li><code>routes/$user.edit.js</code> &rarr; <code>/:user/edit</code> (api)</li>
+<li><code>routes/test/index.js</code> &rarr; <code>/test/*</code> (api)</li>
+<li><code>app/pages/index.html</code> &rarr; <code>/*</code> (page)</li>
+</ul>
+<p>Your <strong>assets</strong> can contain other sources as well,
+they are pre-processed and only <code>**/assets/scripts/*.js</code> files are bundled:</p>
+<ul>
+<li><code>app/assets/about.md</code> &rarr; <code>/about</code> (render)</li>
+<li><code>app/assets/index.pug</code> &rarr; <code>/</code> (render)</li>
+<li><code>app/assets/styles/home.less</code> &rarr; <code>/styles/home.css</code> (render)</li>
+<li><code>app/assets/scripts/app.js</code> &rarr; <code>/scripts/app.js</code> (bundle)</li>
+</ul>
+<blockquote>
+<p><svg width="16" height="16"><use xlink:href="#icon-code"></use></svg> The code you&#39;ll need in <code>shared/server.js</code>:</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-keyword">const</span> server = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jamrock/server&#x27;</span>);
+
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = server.<span class="hljs-title function_">init</span>();
+</code></pre>
+</blockquote>
+<p>Now you have two options to create routes: either on <code>app/pages</code> for <code>.html</code> components, or in <code>routes</code> for <code>.js</code> handlers.</p>
+<p>In the other hand, all files you place inside <code>app/assets</code> will be pre-rendered and its final output will be served.</p>
+<p>The <strong>client</strong> folder is reserved for those components that might be used on the client-side only.</p>
+<h3 id="route-handlers">Route handlers</h3>
+<p>Files inside <strong>routes</strong> are function modules, or objects, exposing some functions to act as request handlers, i.e.</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// app/routes/example/index.js</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function"><span class="hljs-params">conn</span> =&gt;</span> <span class="hljs-string">`
+  &lt;h1&gt;<span class="hljs-subst">${conn.req.originalUrl}</span>&lt;/h1&gt;
+`</span>;
+</code></pre>
+<p>Returned value determines the response type, otherwise you should use the <code>conn</code> argument to set a response.</p>
+<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// app/routes/logout.js</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">as</span>: <span class="hljs-string">&#x27;logout_path&#x27;</span>,
+  <span class="hljs-title function_">DELETE</span>(<span class="hljs-params">conn</span>) {
+    conn.<span class="hljs-title function_">delete_session</span>([<span class="hljs-string">&#x27;user_auth&#x27;</span>]);
+    conn.<span class="hljs-title function_">put_flash</span>(<span class="hljs-string">&#x27;success&#x27;</span>, <span class="hljs-string">&#x27;Good bye!&#x27;</span>);
+    conn.<span class="hljs-title function_">redirect</span>(conn.<span class="hljs-property">routes</span>.<span class="hljs-title function_">login_page</span>());
+  },
+};
+</code></pre>
+<p>Named methods matching <code>/^(GET|PUT|POST|PATCH|DELETE)/</code> will be used to sub-route the requested path.</p>
+<blockquote>
+<p><svg width="16" height="16"><use xlink:href="#icon-pin"></use></svg> The <code>as</code> property is used to make reference to other routes, so <code>conn.routes.logout_path()</code> will work as expected.</p>
+</blockquote>
 <h2 id="usage-principles">Usage principles</h2>
-<p>We believe static-pages are the best solution for most use-cases, and then just sprinkle JavaScript to improve the usability.</p>
+<p>Static pages are the good solution for most people, and then just sprinkle JavaScript to improve the usability.</p>
 <pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">import</span> { session, put_session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/conn&#x27;</span>;
 
@@ -89,7 +150,7 @@ execute and render the requested component and then it sends the changes back to
 <p>Working this way you&#39;ll enable more users consuming your web-pages without charge them with the penalty of the complexity of your app:</p>
 <ul>
 <li>Your code may stay complex and so, but on the server-side, where you won&#39;t hurt the final user experience.</li>
-<li>Also, using static-pages have a lot of benefits for caching, distribution, search-engine optimization, etc.</li>
+<li>Also, using server-side rendering have a lot of benefits for caching, distribution, search-engine optimization, etc.</li>
 </ul>
 </main>
         <nav class="flex end gap"><span class="auto">➯ Next: <a id="next" href="docs/components">Components</a></span><a id="back" href="./#" onclick="content.scrollTop=0">&uarr; Back to the top</a>

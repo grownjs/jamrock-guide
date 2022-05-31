@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Jamrock // Components</title>
-    <meta name="release" content="a2c0a8b">
+    <meta name="release" content="202b558">
     <script src="//grown.jamrock.dev/scripts.js"></script>
     <link rel="stylesheet" href="//grown.jamrock.dev/styles.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sorts+Mill+Goudy">
@@ -55,53 +55,6 @@ html[theme=dark] .hljs-comment, html[theme=dark] .hljs-quote { color: #969896; }
 <li>User input can be sent by using <code>&lt;form&gt;</code> elements, plain <code>&lt;a&gt;</code> links can provide input too, as well with XHR/fetch calls, etc.</li>
 <li>Live user-events and input can be sent to the backend using WebSockets or XHR/fetch, whatever is available.</li>
 </ul>
-<h2 id="files-directories">Files &amp; directories</h2>
-<p>At this point, you may want to write some code already, so lets put it where belongs:</p>
-<pre class="hljs">
-├── app
-│     └── <b>pages          &larr; server-side components</b>
-├── routes
-└── shared
-      └── server.js
-</pre>
-
-<p>Depending on its location, the resulting routes are:</p>
-<ul>
-<li><code>app/pages/my/$area.html</code> &rarr; <code>/my/:area</code> (page)</li>
-<li><code>routes/$user.edit.js</code> &rarr; <code>/:user/edit</code> (api)</li>
-<li><code>routes/test/index.js</code> &rarr; <code>/test/*</code> (api)</li>
-<li><code>app/pages/index.html</code> &rarr; <code>/*</code> (page)</li>
-</ul>
-<blockquote>
-<p><svg width="16" height="16"><use xlink:href="#icon-code"></use></svg> The code you&#39;ll need in <code>shared/server.js</code>:</p>
-<pre class="hljs"><code class="lang-js"><span class="hljs-keyword">const</span> server = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jamrock/server&#x27;</span>);
-
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = server.<span class="hljs-title function_">init</span>();
-</code></pre>
-</blockquote>
-<p>Now you have two options to create routes: either on <code>app/pages</code> for <code>.html</code> components, or in <code>routes</code> for <code>.js</code> handlers.</p>
-<h3 id="route-handlers">Route handlers</h3>
-<p>They are function modules, or objects, exposing some functions to act as request handlers, i.e.</p>
-<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// routes/example/index.js</span>
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function"><span class="hljs-params">conn</span> =&gt;</span> <span class="hljs-string">`
-  &lt;h1&gt;<span class="hljs-subst">${conn.req.originalUrl}</span>&lt;/h1&gt;
-`</span>;
-</code></pre>
-<p>Returned value determines the response type, otherwise you should use the <code>conn</code> argument to set a response.</p>
-<pre class="hljs"><code class="lang-js"><span class="hljs-comment">// routes/logout.js</span>
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-attr">as</span>: <span class="hljs-string">&#x27;logout_path&#x27;</span>,
-  <span class="hljs-title function_">DELETE</span>(<span class="hljs-params">conn</span>) {
-    conn.<span class="hljs-title function_">delete_session</span>([<span class="hljs-string">&#x27;user_auth&#x27;</span>]);
-    conn.<span class="hljs-title function_">put_flash</span>(<span class="hljs-string">&#x27;success&#x27;</span>, <span class="hljs-string">&#x27;Good bye!&#x27;</span>);
-    conn.<span class="hljs-title function_">redirect</span>(conn.<span class="hljs-property">routes</span>.<span class="hljs-title function_">login_page</span>());
-  },
-};
-</code></pre>
-<p>Named methods matching <code>/^(GET|PUT|POST|PATCH|DELETE)/</code> will be used to sub-route the requested path.</p>
-<blockquote>
-<p><b>☞</b> The <code>as</code> property is used to make reference to other routes, so <code>conn.routes.logout_path()</code> will work as expected.</p>
-</blockquote>
 <h3 id="page-components">Page components</h3>
 <p>Without sprinkling on them JavaScript or <code>{data}</code> they&#39;re just templates with super-powers.</p>
 <p>However, data can be rendered on the template in several ways:</p>
