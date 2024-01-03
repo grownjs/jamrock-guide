@@ -126,16 +126,17 @@ In order to fix the previous example, we need to solve this client-side issue: t
 
 The solution is pretty simple actually, might not be as reactive than listening for `oninput` events, but it'll work:
 
-```html
-<form @patch>
-  <input bind:value />
-  <input type="submit" />
-</form>
+```diff
+-<input bind:value />
++<form @patch>
++  <input bind:value />
++  <input type="submit" />
++</form>
 ```
 
 Jamrock will enhance the `<form>` to include the appropriate `method` and hidden fields to handle the `PATCH` request.
 
-Also, a element that can `submit` the form is required (it can be hidden), that will request the page as expected if JavaScript were enabled.
+Also, an element that can `submit` the form is required (it can be hidden), that will trigger the request to the page as expected.
 
 The only downside on this approach is that you'll lost the focus on the `<input>` field if you press <kbd>ENTER</kbd> while you're typing. 😅
 
