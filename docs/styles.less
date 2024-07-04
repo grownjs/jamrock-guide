@@ -18,9 +18,7 @@ body {
   background-color: @rich-black;
   color: @lighter;
 }
-svg {
-  fill: currentColor;
-}
+svg { fill: currentColor; }
 hr {
   border: none;
   border-top: 2px dashed @gunmetal;
@@ -29,14 +27,26 @@ a {
   color: @mantis;
   &:hover { color: @spring-bud; }
 }
+blockquote {
+  margin: 0;
+  padding: 5px 0 5px .5rem;
+  border-radius: 3px;
+  border-left: .5rem solid @gunmetal;
+  background-color: rgba(0, 0, 0, .3);
+}
+blockquote p:first-child { margin-top: 0; }
+blockquote p:last-child { margin-bottom: 0; }
+pre code {
+  display: block;
+  padding: .5rem;
+}
+ul, ol { padding-left: 2rem; }
+small { font-size: .8rem; }
 code {
   background-color: @darker;
   border-radius: 3px;
   padding: 0 2px;
   color: @mantis;
-}
-small {
-  font-size: .8rem;
 }
 
 .meteorite {
@@ -70,17 +80,22 @@ small {
   text-shadow: 1px 1px 3px #000000;
 }
 
-.center {
-  text-align: center;
-}
+.center { text-align: center; }
+.reset { margin: 0; }
 
-.reset {
-  margin: 0;
+.hljs {
+  padding: 0;
+  background-color: rgba(0, 0, 0, .3);
+  code { background-color: unset;  }
 }
 
 .body {
   max-width: 640px;
   margin: auto;
+
+  h1, h2, h3, h4 {
+    .dimmed;
+  }
 }
 
 .flex {
