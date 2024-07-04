@@ -44,13 +44,18 @@ Pages are components, so they can render other components, receive props, render
   import Example from './components/Example.html';
 </script>
 
-<Example>It works.</Example>
+<Example class="thingy">It works.</Example>
 ```
 
 The used component `Example` looks like this:
 
 ```html
-<h1>
+<script>
+  let className;
+  export { className as class };
+</script>
+
+<h1 class={className}>
   <slot />
 </h1>
 ```
