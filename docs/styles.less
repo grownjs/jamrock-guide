@@ -3,6 +3,8 @@
 @opaque: #AAEEAA;
 @darker: #2C4C43;
 @lighter: #BEBEBE;
+@attention: #C69026;
+@information: #5F9EFF;
 @rich-black: #01111F;
 @spring-bud: #B3E72D;
 @gunmetal: #13272D;
@@ -29,10 +31,33 @@ a {
 }
 blockquote {
   margin: 0;
+  position: relative;
   padding: 5px 0 5px .5rem;
   border-radius: 3px;
   border-left: .5rem solid @gunmetal;
   background-color: rgba(0, 0, 0, .3);
+
+  &.type-warning::before,
+  &.type-info::before {
+    position: absolute;
+    font-size: .8rem;
+    top: 5px;
+  }
+
+  &.type-warning::before {
+    content: 'WARNING';
+    color: @attention;
+  }
+  &.type-info::before {
+    content: 'INFO';
+    color: @information;
+  }
+
+  &.type-warning,
+  &.type-info { padding-top: 1.5rem; }
+
+  &.type-warning { border-color: @attention; }
+  &.type-info { border-color: @information; }
 }
 blockquote p:first-child { margin-top: 0; }
 blockquote p:last-child { margin-bottom: 0; }

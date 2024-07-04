@@ -186,6 +186,7 @@ The same way we can have a `./pages/+error.html` to decorate the failures captur
 <pre>{@debug failure}</pre>
 ```
 
+> [!INFO]
 > Layout and error pages can exist on any route-level, the nearest one to the executed page will be used, if not found then upper levels are scanned to retrieve one.
 
 ### What can I do on the browser then? 🤔
