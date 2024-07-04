@@ -51,7 +51,7 @@ Also you can use regular `<style>` tags, all rules will be scoped unless you dec
 
 > Set the `lang` attribute to use Less, Sass, PostCSS or something else if you prefer (ensure you have installed the dependency!).
 
-### Components, props and slots
+### Components, props and slots ⚙️
 
 Pages are components, so they can render other components, receive props, render slots, etc.
 
@@ -93,7 +93,7 @@ Try using a form to read some input from the user:
 
 > Only pages will take their props from the body, path and query parameters.
 
-### This is what you'll get (when you mess with us!)
+### This is what you'll get (when you mess with us! 😎)
 
 Pages can handle other methods as well, along with access to the session, redirections, etc.
 
@@ -158,7 +158,7 @@ Pages can handle other methods as well, along with access to the session, redire
 
 The generated markup is always prepared to work seamlessly, so forms will fallback to standard requests if Javascript is disabled.
 
-### Layout (and error pages)
+### Layouts (and error pages) ⚠️
 
 Now, we can use a `./pages/+layout.html` file at the same level.
 
@@ -188,7 +188,7 @@ The same way we can have a `./pages/+error.html` to decorate the failures captur
 
 > Layout and error pages can exist on any route-level, the nearest one to the executed page will be used, if not found then upper levels are scanned to retrieve one.
 
-### What can I do on the browser then?
+### What can I do on the browser then? 🤔
 
 We support a limited version of components that runs both on the browser and server-side,
 for example `./pages/components/Notifications.html` looks like this:
@@ -232,7 +232,7 @@ As you can tell you can do pretty basic stuff, please explore and share everythi
 
 Explore the tests we have so far, you may find interesting stuff!
 
-### Acknowledgements
+### Acknowledgements 🏆
 
 Nothing of this could be possible without the awesome work of people around the world,
 kudos for all the amazing ideas I robed for this.
