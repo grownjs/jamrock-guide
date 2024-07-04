@@ -2,6 +2,7 @@
 @mantis: #79C551;
 @opaque: #AAEEAA;
 @darker: #2C4C43;
+@lighter: #BEBEBE;
 @rich-black: #01111F;
 @spring-bud: #B3E72D;
 @gunmetal: #13272D;
@@ -15,7 +16,7 @@
 body {
   font-family: Montserrat, 'Sorts Mill Goudy';
   background-color: @rich-black;
-  color: @white;
+  color: @lighter;
 }
 svg {
   fill: currentColor;
@@ -32,7 +33,7 @@ code {
   background-color: @darker;
   border-radius: 3px;
   padding: 0 2px;
-  color: @rich-black;
+  color: @mantis;
 }
 small {
   font-size: .8rem;
@@ -65,7 +66,8 @@ small {
 }
 
 .dimmed {
-  color: @darker
+  color: @darker;
+  text-shadow: 1px 1px 3px #000000;
 }
 
 .center {

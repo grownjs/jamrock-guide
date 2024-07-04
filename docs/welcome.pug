@@ -15,4 +15,25 @@ block body
 
   h3.dimmed Yes, we have pages and routes!
 
-  p They work as expected, you define a page and you'll get a route: so #[code FIXME]
+  p.
+    They work as usual, you define a page and you'll get a route: so #[code ./pages/index.html] will become the #[code /] route.
+  p.
+    If you save your page as #[code .js] or #[code .mjs] then the route will behave as an API endpoint, rather than a web-page.
+
+  h3.dimmed Command line support
+
+  p.
+    You don't need to write glue code to run your pages, just call the CLI:
+
+  pre: code $ jamrock serve --src examples/ --watch
+
+  p.
+    This will run the NodeJS wrapper, which tries to invoke #[code ./bin/node] from your project,
+    to use Deno or Bun just replace #[code ./bin/deno] or #[code ./bin/bun] instead of #[code jamrock].
+
+  h3.dimmed Getting started
+
+  p.
+    Install Jamrock by using:
+
+  pre: code $ curl get.jamrock.dev | bash
