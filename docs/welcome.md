@@ -42,16 +42,18 @@ Pages are components, so they can render other components, receive props, render
 ```html
 <script>
   import Example from './components/Example.html';
-
-  export let name = null;
 </script>
 
-<Example>
-  Hello {name}
-</Example>
+<Example>It works.</Example>
 ```
 
-> Only pages will take their props from the body, path and query parameters.
+The used component `Example` looks like this:
+
+```html
+<h1>
+  <slot />
+</h1>
+```
 
 Try using a form to read some input from the user:
 
@@ -68,51 +70,35 @@ Try using a form to read some input from the user:
 </form>
 ```
 
-> Given props will be `undefined` if no default value is declared.
+> Only pages will take their props from the body, path and query parameters.
 
 ### This is what you'll get (when you mess with us!)
 
-Pages can do almost anything, as you can see it can be fun as hell:
+Pages can handle other methods as well, along with access to the session, redirections, etc.
+
+> Name the following as `./pages/login+page.html` to get a `/login` route.
 
 ```html
 <script>
   import { redirect, session, flash } from 'jamrock:conn';
 
-  import Route from './components/route.html';
-  import Failure from './components/failure.html';
-
-  import { isLogged } from './stores.mjs';
-  import { User } from './models.mjs';
-
   export let email;
   export let password;
 
-  let error = null;
-
   export default {
-    as: 'login_page',
-
-    async POST() {
-      const user = await User.verifyAuth({ email, password });
-
-      if (user) {
-        session.user = {
-          currentInfo: user.record,
-          expirationDate: Date.now() + 864000,
-        };
+    POST() {
+      if (email === 'admin@example.com' && password === '42') {
         flash('success', "You've been logged in!");
+        session.loggedIn = true;
         redirect('/login');
+      } else {
+        flash('error', 'Your input is wrong!');
       }
     },
-
     DELETE() {
       flash('success', "You've been logged off!");
-      session.user = null;
+      session.loggedIn = null;
       redirect('/login');
-    },
-
-    catch(e) {
-      error = e;
     },
   };
 </script>
@@ -121,7 +107,7 @@ Pages can do almost anything, as you can see it can be fun as hell:
   <title>Log in</title>
 </head>
 
-{#if isLogged}
+{#if session.loggedIn}
   <h3>Glad you're back!</h3>
   <form action="/login" @delete>
     <button type="submit">Logout</button>
@@ -132,7 +118,7 @@ Pages can do almost anything, as you can see it can be fun as hell:
     <p>
       <label>
         <span>E-mail:</span>
-        <input type="email" name="email" value={email} autofocus required />
+        <input type="email" name="email" value={email} required />
       </label>
     </p>
     <p>
@@ -141,90 +127,89 @@ Pages can do almost anything, as you can see it can be fun as hell:
         <input type="password" name="password" required />
       </label>
     </p>
-    <Failure from={error} />
-    <button type="submit">Login</button> or <Route path="/new">create your account</Route>.
+    <button type="submit">Login</button>
   </form>
 {/if}
 ```
 
-By the way, we have some support for layouts and such, e.g.
+> The `@async` modifier tells that form can be handled with Javascript, so an XHR request is performed instead.
+> The `@delete` modifier will decorate the form to handle the request as `DELETE` by adding a `_method` field.
+
+The generated markup is always prepared to work seamlessly, so forms will fallback to standard requests if Javascript is disabled.
+
+### Layout (and error pages)
+
+Now, we can use a `./pages/+layout.html` file at the same level.
+
+This component will be used to render all sibling pages, which in turn will render the `flash` messages produced by the login page:
 
 ```html
 <script>
-  import { method, flash } from 'jamrock:conn';
-  import { isLogged, currentInfo } from './stores.mjs';
+  import { flash } from 'jamrock:conn';
 
-  import Notifications from './components/notifications.html';
-
-  let messages = [];
-  if (method === 'GET') {
-    messages = flash() || null;
-  }
+  import Notifications from './components/Notifications.html';
 </script>
 
-<style global lang="less">
-  .loading {
-    pointer-events: none;
-    position: relative;
+<Notifications tag="ul" from={flash()} />
 
-    &::after {
-      background-color: rgba(255, 255, 255, .5);
-      position: absolute;
-      color: inherit;
-      content: '';
-      bottom: 0;
-      right: 0;
-      left: 0;
-      top: 0;
-    }
-  }
-  *,
-  *::after,
-  *::before {
-    margin: 0;
-    padding: 0;
-  }
-  .profile {
-    display: inline-flex;
-  }
-  .profile img { margin-right: 5px; }
-</style>
-
-<nav>
-  <ul>
-    <fragment tag="li" name="auth">
-      <a href="/" target="_top">Home</a>
-      | {#if isLogged}
-        <span class="profile">
-          {#if currentInfo.picture}
-            <img src="/{currentInfo.picture}" width="16" />
-          {/if}
-          <a href="/login">{currentInfo.email}</a>
-        </span>
-      {:else}
-        <a href="/login">Log-in</a> or <a href="/new">Create account</a>
-      {/if}
-    </fragment>
-  </ul>
-</nav>
-
-<Notifications from={messages} />
-
-<fieldset>
-  <legend>PAGE</legend>
-  <fragment name="main">
-    <slot />
-  </fragment>
-</fieldset>
+<slot />
 ```
 
-> This works, but we don't know the limits of the framework yet!
+The same way we can have a `./pages/+error.html` to decorate the failures captured on the same route-level, e.g.
 
-As you can tell you can do pretty basic stuff,
-please explore and share everything you found interesting on the Github repository,
-and as well on my Twitter account.
+```html
+<script>
+  export const failure = null;
+</script>
 
-Explore the tests we have so far, you may find interesting stuff.
+<pre>{@debug failure}</pre>
+```
+
+> Layout and error pages can exist on any route-level, the nearest one to the executed page will be used, if not found then upper levels are scanned to retrieve one.
+
+### What can I do on the browser then?
+
+We support a limited version of components that runs both on the browser and server-side,
+for example `./pages/components/Notifications.html` looks like this:
+
+```html
+<script context="client">
+  import { useState, useEffect } from 'jamrock';
+
+  let messages = [];
+  export { messages as from };
+
+  const [msgs, setMsgs] = useState(messages);
+
+  function close(offset) {
+    setMsgs(msgs.filter((_, i) => i !== offset));
+  }
+
+  function pop() {
+    if (!msgs.length) return;
+    msgs.pop();
+    setMsgs(msgs);
+  }
+
+  useEffect(() => {
+    const t = setInterval(pop, 5000);
+    return () => clearInterval(t);
+  }, []);
+</script>
+
+{#each msgs as msg, i}
+  <li class={msg.type}>
+    <span>{msg.value}</span>
+    <button onclick="{() => close(i)}">&times;</button>
+  </li>
+{/each}
+```
+
+> This behaviour is experimental, and very very limited, interoperation between client and server-side components is still in progress...
+
+As you can tell you can do pretty basic stuff, please explore and share everything you found interesting on the Github repository, and as well on my Twitter account.
+
+Explore the tests we have so far, you may find interesting stuff!
 
 ### Acknowledgements
 
