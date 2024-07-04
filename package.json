@@ -18,7 +18,7 @@
   "devDependencies": {
     "highlight.js": "^11.5.0",
     "kramed": "^0.5.6",
-    "mortero": "^0.0.60",
+    "mortero": "^0.0.117",
     "pug": "^3.0.2"
   }
 }
