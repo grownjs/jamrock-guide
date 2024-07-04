@@ -35,6 +35,22 @@ Now visit the following urls:
 
 > 404 pages will include useful information like the available routes, env, etc.
 
+### Preparing to style your pages 💅
+
+By default we include UnoCSS support if you place a `./unocss.config.mjs` script in your application folder, e.g.
+
+```js
+export default {
+  rules: [
+    ['thingy', { color: 'red' }],
+  ],
+};
+```
+
+Also you can use regular `<style>` tags, all rules will be scoped unless you declare the `global` attribute.
+
+> Set the `lang` attribute to use Less, Sass, PostCSS or something else if you prefer (ensure you have installed the dependency!).
+
 ### Components, props and slots
 
 Pages are components, so they can render other components, receive props, render slots, etc.
