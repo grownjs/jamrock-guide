@@ -1,5 +1,7 @@
 @white: #FEFEFE;
 @mantis: #79C551;
+@opaque: #AAEEAA;
+@darker: #2C4C43;
 @rich-black: #01111F;
 @spring-bud: #B3E72D;
 @gunmetal: #13272D;
@@ -18,15 +20,28 @@ body {
 svg {
   fill: currentColor;
 }
+hr {
+  border: none;
+  border-top: 2px dashed @gunmetal;
+}
 a {
   color: @mantis;
   &:hover { color: @spring-bud; }
+}
+code {
+  background-color: @darker;
+  border-radius: 3px;
+  padding: 0 2px;
+  color: @rich-black;
+}
+small {
+  font-size: .8rem;
 }
 
 .meteorite {
   text-align: center;
   svg {
-    max-width: 80%;
+    max-width: 66%;
   }
   a {
     transition: color .5s;
@@ -41,6 +56,18 @@ a {
   animation-iteration-count: infinite;
 }
 
+.welcome {
+  color: @opaque;
+  svg {
+    max-width: 150px;
+    margin-top: 50px;
+  }
+}
+
+.dimmed {
+  color: @darker
+}
+
 .center {
   text-align: center;
 }
@@ -50,11 +77,13 @@ a {
 }
 
 .body {
-  max-width: 720px;
+  max-width: 640px;
   margin: auto;
 }
 
 .flex {
   display: flex;
   .gap { gap: 1rem; }
+  &.between { justify-content: space-between; }
+  &.centered { align-items: center; }
 }

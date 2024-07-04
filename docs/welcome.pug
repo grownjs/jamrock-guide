@@ -2,39 +2,17 @@ extends partials/blank.pug
 
 block body
   .center
-    h1.meteorite.floating: a(href='/') {@import from="jamrock-meteorite.svg"}
-
-    .legend: small= pkg.description
-
-    p 🔥 #[a#next(href='//docs.jamrock.dev') Getting started]
+    span.welcome {@import from="welcome.svg"}
+    h1.meteorite.floating: a(href='/' data-version=pkg.version) {@import from="jamrock-meteorite.svg"}
 
   hr
 
-  h2.center Built for back &amp; front developers!
-  p.center Whether you're looking for a role-shift, or you're playing on both sides, we support you.
+  h2.dimmed The herbsman's web framework
 
-  h2.center Modern but backed on the roots...
-  p.center You wanted to use #[a(href='//platform.html5.org/') The Web platform] but the system got you first? Keep calm, the guidance is here.
+  p.
+    Jamrock is pretty similar to SvelteKit or NextJS, but it's designed to run entirely on the server,
+    some client-side integration is there but don't expect too much yet!
 
-  h2.center It just works, as it used to be:
-  p.center Web development made not only fun, but also simple.
+  h3.dimmed Yes, we have pages and routes!
 
-  hr
-
-  h3.center Got interested?
-
-  p.center Subscribe to receive updates:
-
-  form.center(action='//formspree.io/f/mnqwvnyq' method='post')
-    input(type='email' name='address' required placeholder='your@email.com')
-    button(type='submit') Subscribe
-
-  p.center Checkout the #[a(href='//docs.jamrock.dev') getting started] section to start learning today.
-
-  .flex.gap
-    p.center: small The project is still in its early alpha-stage, it may change or things could not work as expected &mdash; reach me at #[a(href='mailto:yo@soypache.co') yo@soypache.co] for any disclosure!
-    |{@import from="construction.svg" width=80 height=80}
-
-  .flex.gap
-    |{@import from="bullhorn.svg" width=80 height=80}
-    p.center: small Get syntonized at our #[a(href='//twitter.com/grownjs') @grownjs] twitter and github's #[a(href='//github.com/grownjs/grown/discussions') discussions] to know more about this project and its organization, bless you.
+  p They work as expected, you define a page and you'll get a route: so #[code FIXME]
