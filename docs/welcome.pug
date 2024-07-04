@@ -1,13 +1,10 @@
 extends partials/blank.pug
 
 block body
-  .hero.center
-    span.welcome {@import from="welcome.svg"}
-    h1.logotype: a(href='/') {@import from="jamrock.svg"}
+  .center
+    h1.meteorite.floating: a(href='/') {@import from="jamrock-meteorite.svg"}
 
-    .legend
-      button#toggle: import(from='bulb.svg')
-      small= pkg.description
+    .legend: small= pkg.description
 
     p 🔥 #[a#next(href='//docs.jamrock.dev') Getting started]
 

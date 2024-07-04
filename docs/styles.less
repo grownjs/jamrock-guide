@@ -1,0 +1,60 @@
+@white: #FEFEFE;
+@mantis: #79C551;
+@rich-black: #01111F;
+@spring-bud: #B3E72D;
+@gunmetal: #13272D;
+
+@keyframes floating {
+  0% { transform: translateY(0%); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0%); }
+}
+
+body {
+  font-family: Montserrat, 'Sorts Mill Goudy';
+  background-color: @rich-black;
+  color: @white;
+}
+svg {
+  fill: currentColor;
+}
+a {
+  color: @mantis;
+  &:hover { color: @spring-bud; }
+}
+
+.meteorite {
+  text-align: center;
+  svg {
+    max-width: 80%;
+  }
+  a {
+    transition: color .5s;
+    color: @white;
+    &:hover { color: @spring-bud; }
+  }
+}
+
+.floating {
+  animation-name: floating;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.center {
+  text-align: center;
+}
+
+.reset {
+  margin: 0;
+}
+
+.body {
+  max-width: 720px;
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+  .gap { gap: 1rem; }
+}

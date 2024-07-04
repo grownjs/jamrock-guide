@@ -11,30 +11,8 @@ html(theme='dark')
     title Welcome to Jamrock
     meta(name='release' content=GIT_REVISION)
 
-    script(src='//grown.jamrock.dev/scripts.js')
-    link(rel='stylesheet' href='//grown.jamrock.dev/styles.css')
-    link(rel='stylesheet' href='//fonts.googleapis.com/css?family=Sorts+Mill+Goudy')
-
-    style.
-      html[theme=dark] body, body { background-image: none; }
-      .body { max-width: 720px; }
-      .welcome svg { max-width: 150px; fill: currentColor }
-      .logotype svg { max-width: 420px; }
-      .logotype a svg { vertical-align: middle; }
-      .logotype { margin: 0; }
-      .center { text-align: center }
-      .hero { margin: 50px; }
-      .legend { opacity: .33; }
-      main { margin: 0 auto; }
-      blockquote b {
-        cursor: default;
-        font-style: normal;
-        margin-right: .2em;
-        padding-right: .2em;
-        display: inline-block;
-        text-align: center;
-        width: 1.5em;
-      }
+    link(rel='stylesheet' href='//fonts.googleapis.com/css?family=Montserrat')
+    import(from='styles.css')
 
   body.reset
     if NODE_ENV === 'production'
@@ -49,5 +27,5 @@ html(theme='dark')
         ga('send', 'pageview');
         /* eslint-enable */
 
-    main.body.noscroll
+    main.body
       block body
