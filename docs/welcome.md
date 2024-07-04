@@ -226,6 +226,7 @@ for example `./pages/components/Notifications.html` looks like this:
 {/each}
 ```
 
+> [!WARNING]
 > This behaviour is experimental, and very very limited, interoperation between client and server-side components is still in progress...
 
 As you can tell you can do pretty basic stuff, please explore and share everything you found interesting on the Github repository, and as well on my Twitter account.
