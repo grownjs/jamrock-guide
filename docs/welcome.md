@@ -9,7 +9,7 @@ Jamrock is available through a custom installer,
 it downloads the package and uncompress it locally at your `$HOME`, e.g.
 
 ```shell
-$ curl get.jamrock.dev | bash
+$ curl -L get.jamrock.dev | bash
 $ jamrock init my-app
 $ cd my-app
 $ ./bin/node --version
