@@ -41,26 +41,23 @@ html(theme='dark')
 
         main!= yield
 
-        nav.flex.end.gap
+        nav.flex.gap-sm.between
           if next
-            span.auto ➯ Next: #[a#next(href=next.link) #{next.label}]
+            span ➯ Next: #[a#next(href=next.link) #{next.label}]
 
           a#back(href="`${location.pathname === '/' ? '.' : location.pathname}/#`" onclick='content.scrollTop=0') &uarr; Back to the top
 
       aside#sidebar.noscroll
-        .xbody
+        .body.h-full.flex.vertical
           h1.meteorite.floating
             a(href='.' data-version=pkg.version): import(from='jamrock-meteorite.svg')
-          hr
-          p.flex
-            button#toggle: import(from='bulb.svg')
-            small= pkg.description
-          hr
-          .flex.fit.gap.push
+
+          include menu
+
+          .flex.gap-sm.vertical
             a(href='//badge.fury.io/js/grown' target='_blank'): img(src='//badge.fury.io/js/grown.svg')
             a(href='//codecov.io/gh/grownjs/grown' target='_blank'): img(src='//codecov.io/gh/grownjs/grown/branch/master/graph/badge.svg')
             a(href='//github.com/grownjs/grown/actions' target='_blank'): img(src='//github.com/grownjs/grown/workflows/build/badge.svg')
-          include menu
 
     script(src='//files.stork-search.net/stork.js')
     script.
