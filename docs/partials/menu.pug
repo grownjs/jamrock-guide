@@ -1,8 +1,12 @@
-nav#nav.fill: ul.reset.links
+nav#nav.fill.px-2: ul.reset.links
   li
     h3 Overview
     ul.reset.links
       li: alink(for='/' exact) Introduction
+      li: alink(for='/command-line') Command Line
+  li
+    h3 Core
+    ul.reset.links
       li: alink(for='/components') Components
       li: alink(for='/fragments') Fragments
       li: alink(for='/scripts') Scripts
@@ -12,5 +16,5 @@ nav#nav.fill: ul.reset.links
     h3 Server
     ul.reset.links
       li: alink(for='/conn') Conn
+      li: alink(for='/store') Store
       li: alink(for='/hooks') Hooks
-      li: alink(for='/stores') Stores
