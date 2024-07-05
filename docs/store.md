@@ -1,7 +1,7 @@
 ---
 $render: ./partials/layout.pug
-title: Conn
+title: Store
 next:
-  label: Store
-  link: store
+  label: Hooks
+  link: hooks
 ---
