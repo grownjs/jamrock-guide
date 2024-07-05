@@ -37,15 +37,15 @@ blockquote {
   border-left: .5rem solid @gunmetal;
   background-color: rgba(0, 0, 0, .3);
 
-  &.type-warning::before,
+  &.type-warn::before,
   &.type-info::before {
     position: absolute;
     font-size: .8rem;
     top: 5px;
   }
 
-  &.type-warning::before {
-    content: 'WARNING';
+  &.type-warn::before {
+    content: 'WARN';
     color: @attention;
   }
   &.type-info::before {
@@ -53,11 +53,14 @@ blockquote {
     color: @information;
   }
 
-  &.type-warning,
+  &.type-warn,
   &.type-info { padding-top: 1.5rem; }
 
-  &.type-warning { border-color: @attention; }
+  &.type-warn { border-color: @attention; }
   &.type-info { border-color: @information; }
+
+  &.type-warn code { color: @attention; }
+  &.type-info code { color: @information; }
 }
 blockquote p:first-child { margin-top: 0; }
 blockquote p:last-child { margin-bottom: 0; }
@@ -71,7 +74,7 @@ p code {
 ul, ol { padding-left: 2rem; }
 small { font-size: .8rem; }
 code {
-  background-color: @darker;
+  background-color: rgba(255, 255, 255, .1);
   border-radius: 3px;
   padding: 0 2px;
   color: @mantis;

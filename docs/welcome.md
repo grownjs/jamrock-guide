@@ -49,7 +49,10 @@ export default {
 
 Also you can use regular `<style>` tags, all rules will be scoped unless you declare the `global` attribute.
 
-> Set the `lang` attribute to use Less, Sass, PostCSS or something else if you prefer (ensure you have installed the dependency!).
+> [!INFO]
+> Set the `lang` attribute to use Less, Sass, PostCSS or something else if you prefer.
+>
+> You'll be warned to install the required dependencies as needed!
 
 ### Components, props and slots ⚙️
 
@@ -227,7 +230,7 @@ for example `./pages/components/Notifications.html` looks like this:
 {/each}
 ```
 
-> [!WARNING]
+> [!WARN]
 > This behaviour is experimental, and very very limited, interoperation between client and server-side components is still in progress...
 
 As you can tell you can do pretty basic stuff, please explore and share everything you found interesting on the Github repository, and as well on my Twitter account.
