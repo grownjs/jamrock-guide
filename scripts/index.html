@@ -6,106 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>Jamrock | Stores</title>
+    <title>Jamrock | Scripts</title>
     <meta name="release" content="ecb5525">
     <style>/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; background: white; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }</style>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="styles.css?t=1720171370354">
+    <link rel="stylesheet" href="styles.css?t=1720171369117">
 
   </head>
   <body class="reset">
     <svg width="0" height="0" style="position:absolute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="0 0 16 16" id="icon-alert" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></symbol><symbol viewBox="0 0 16 16" id="icon-beaker" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></symbol><symbol viewBox="0 0 20 20" id="icon-bug" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 12h-1.515a8.318 8.318 0 0 0-.781-3.102A2.504 2.504 0 0 0 16.999 6.5a.5.5 0 0 0-1 0c0 .761-.57 1.392-1.306 1.487a7.452 7.452 0 0 0-.904-1.124A4.505 4.505 0 0 0 9.499 1a4.505 4.505 0 0 0-4.29 5.863 7.211 7.211 0 0 0-.904 1.124A1.502 1.502 0 0 1 2.999 6.5a.5.5 0 0 0-1 0c0 1.134.759 2.093 1.795 2.398A8.337 8.337 0 0 0 3.013 12H1.499a.5.5 0 0 0 0 1h1.515a8.318 8.318 0 0 0 .781 3.102A2.504 2.504 0 0 0 2 18.5a.5.5 0 0 0 1 0c0-.761.57-1.392 1.306-1.487.174.266.365.521.571.762C6.107 19.21 7.748 20 9.499 20s3.393-.79 4.622-2.225c.207-.241.397-.496.571-.762a1.502 1.502 0 0 1 1.306 1.487.5.5 0 0 0 1 0 2.504 2.504 0 0 0-1.795-2.398A8.337 8.337 0 0 0 15.984 13h1.514a.5.5 0 0 0 0-1zm-8-10a3.504 3.504 0 0 1 3.443 4.134C11.921 5.396 10.738 5 9.5 5s-2.421.395-3.443 1.134A3.504 3.504 0 0 1 9.5 2zM4 12.5c0-3.385 2.201-6.173 5-6.473v12.946c-2.799-.3-5-3.088-5-6.473zm6 6.473V6.027c2.799.3 5 3.088 5 6.473s-2.201 6.173-5 6.473z"/></symbol><symbol viewBox="0 0 16 16" id="icon-code" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.72 3.22a.75.75 0 0 1 1.06 1.06L2.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06L.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25zm6.56 0a.75.75 0 1 0-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 1 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25z"/></symbol><symbol viewBox="0 0 16 16" id="icon-pin" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.456.734a1.75 1.75 0 0 1 2.826.504l.613 1.327a3.081 3.081 0 0 0 2.084 1.707l2.454.584c1.332.317 1.8 1.972.832 2.94L11.06 10l3.72 3.72a.75.75 0 1 1-1.061 1.06L10 11.06l-2.204 2.205c-.968.968-2.623.5-2.94-.832l-.584-2.454a3.081 3.081 0 0 0-1.707-2.084l-1.327-.613a1.75 1.75 0 0 1-.504-2.826L4.456.734zM5.92 1.866a.25.25 0 0 0-.404-.072L1.794 5.516a.25.25 0 0 0 .072.404l1.328.613A4.582 4.582 0 0 1 5.73 9.63l.584 2.454a.25.25 0 0 0 .42.12l5.47-5.47a.25.25 0 0 0-.12-.42L9.63 5.73a4.581 4.581 0 0 1-3.098-2.537L5.92 1.866z"/></symbol><symbol viewBox="0 0 16 16" id="icon-search" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 1 1-8.998 0A4.499 4.499 0 0 1 11.5 7zm-.82 4.74a6 6 0 1 1 1.06-1.06l3.04 3.04a.75.75 0 1 1-1.06 1.06l-3.04-3.04z"/></symbol></svg>
     <div id="wrapper">
       <div class="body noscroll" id="content">
-        <h1 class="flex gap-sm centered">Stores <small><a href="//github.com/grownjs/jamrock/blob/master/docs/docs/stores.md" target="_blank">&#9998;</a></small></h1>
-        <main><p>Components are able to render data but they can&#39;t keep any state, also, state may be dynamic and change over time... how to deal with?</p>
-<p>Using a session-store is the simplest way to keep a state between requests:</p>
-<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
-
-  <span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">session</span>(<span class="hljs-string">&#x27;counter&#x27;</span>, <span class="hljs-number">0</span>);
-
-  <span class="hljs-keyword">let</span> count = counter;
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p>The <code>let count</code> assignment is required to get subscribed to the <code>counter</code> store, and to reactively update its value on the actual session as it changes.</p>
-<blockquote><p><b>☞</b> If you&#39;re importing the stores from another module (we encourage it!) then the <code>let</code> assignment is not longer required.</p>
-</blockquote><p>This <code>session</code> store is a high-level <em>writable</em>, but you can build up any kind of reactive stores as well:</p>
-<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { readable } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
-
-  <span class="hljs-keyword">let</span> inc = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">readable</span>(inc, <span class="hljs-function"><span class="hljs-params">set</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
-      <span class="hljs-title function_">set</span>(++inc);
-    }, <span class="hljs-number">1000</span>);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">clearInterval</span>(interval);
-  });
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">fragment</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;timer&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{#each timer}{this}{/each}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span>
-</code></pre>
-<p>Stores are consumed the same way as any other stream, as long it survives, it can keep sending changes to the browser.</p>
-<h2 id="server-api">Server API</h2>
-<p>All streams can be paused and resumed programmatically through hooks, e.g.</p>
-<pre class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
-  <span class="hljs-keyword">import</span> { readable } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/store&#x27;</span>;
-  <span class="hljs-keyword">import</span> { useStream } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jamrock/hooks&#x27;</span>;
-
-  <span class="hljs-keyword">let</span> inc = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">const</span> timer = <span class="hljs-title function_">readable</span>(inc, <span class="hljs-function"><span class="hljs-params">set</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> {
-      <span class="hljs-title function_">set</span>(++inc);
-    }, <span class="hljs-number">1000</span>);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">clearInterval</span>(interval);
-  });
-
-  <span class="hljs-keyword">const</span> $timer = <span class="hljs-title function_">useStream</span>({ timer });
-
-  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-title function_">pause</span>(<span class="hljs-params"></span>) {
-      $timer.<span class="hljs-title function_">pause</span>();
-    },
-    <span class="hljs-title function_">toggle</span>(<span class="hljs-params"></span>) {
-      <span class="hljs-keyword">if</span> ($timer.<span class="hljs-property">idle</span>) {
-        $timer.<span class="hljs-title function_">resume</span>();
-      } <span class="hljs-keyword">else</span> {
-        $timer.<span class="hljs-title function_">pause</span>();
-      }
-    },
-  };
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">on:click</span> @<span class="hljs-attr">trigger</span>=<span class="hljs-string">&quot;pause&quot;</span>&gt;</span>⏸︎<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">on:click</span> @<span class="hljs-attr">trigger</span>=<span class="hljs-string">&quot;toggle&quot;</span>&gt;</span>⏯︎<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">fragment</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;timer&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>{#each timer}{this}{/each}<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-<blockquote><p><b>☞</b> The <code>useStream</code> hook allow to manage multiple streams at once, specified by key,
-but it&#39;ll work on <code>{#each}...{/each}</code> blocks only.</p>
-</blockquote><p>...actually, refine that api... it should illustrate how <code>useFragment()</code> work as well...</p>
-<h2 id="client-api">Client API</h2>
-<p>We&#39;re using a modified version of <code>svelte/store</code> to actually provide the primitives for readables, writables and such.</p>
-<h3 id="static-methods">Static methods</h3>
-<ul>
-<li><code>get(store)</code> &mdash; Retrieves the store value.</li>
-<li><code>valid(store)</code> &mdash; Returns <code>true</code> if the store is supported.</li>
-<li><code>session(key[, value])</code> &mdash; Return a <code>writable()</code> for the given session <code>key</code> and <code>value</code> as default.</li>
-<li><code>derived(stores, fn[, value])</code> &mdash; Returns a new store from given dependencies.</li>
-<li><code>writable(value[, callback])</code> &mdash; Returns a new store that allows updates.</li>
-<li><code>readable(value[, callback])</code> &mdash; Returns a new store in read-only mode.</li>
-</ul>
-<blockquote><p><b>☞</b> Writable stores can receive <code>value</code> as a function (with access to the actual request!) that will be invoked prior rendering to sync its contents.</p>
-</blockquote></main>
-        <nav class="flex gap-sm between"><span>➯ Next: <a id="next" href="docs/hooks">Hooks</a></span><a id="back" href="/docs/stores/#" onclick="content.scrollTop=0">&uarr; Back to the top</a>
+        <h1 class="flex gap-sm centered">Scripts <small><a href="//github.com/grownjs/jamrock/blob/master/docs/scripts.md" target="_blank">&#9998;</a></small></h1>
+        
+        <nav class="flex gap-sm between"><span>➯ Next: <a id="next" href="styles">Styles</a></span><a id="back" href="/scripts/#" onclick="content.scrollTop=0">&uarr; Back to the top</a>
         </nav>
       </div>
       <aside class="noscroll" id="sidebar">
@@ -133,7 +47,7 @@ but it&#39;ll work on <code>{#each}...{/each}</code> blocks only.</p>
                     <a href="./fragments">Fragments</a>
                   </li>
                   <li>
-                    <a href="./scripts">Scripts</a>
+                    <a aria-current="page" href="./scripts">Scripts</a>
                   </li>
                   <li>
                     <a href="./styles">Styles</a>
