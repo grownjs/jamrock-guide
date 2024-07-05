@@ -3,6 +3,7 @@
 @opaque: #AAEEAA;
 @darker: #2C4C43;
 @lighter: #BEBEBE;
+@failure: #DC3546;
 @attention: #C69026;
 @information: #5F9EFF;
 @rich-black: #01111F;
@@ -37,30 +38,20 @@ blockquote {
   border-left: .5rem solid @gunmetal;
   background-color: rgba(0, 0, 0, .3);
 
-  &.type-warn::before,
-  &.type-info::before {
-    position: absolute;
-    font-size: .8rem;
-    top: 5px;
-  }
-
-  &.type-warn::before {
-    content: 'WARN';
-    color: @attention;
-  }
-  &.type-info::before {
-    content: 'INFO';
-    color: @information;
-  }
-
-  &.type-warn,
-  &.type-info { padding-top: 1.5rem; }
-
-  &.type-warn { border-color: @attention; }
+  &.type-ok { border-color: @mantis; }
+  &.type-err { border-color: @failure; }
   &.type-info { border-color: @information; }
+  &.type-warn { border-color: @attention; }
 
-  &.type-warn code { color: @attention; }
+  &.type-ok svg { fill: @mantis; }
+  &.type-err svg { fill: @failure; }
+  &.type-info svg { fill: @information; }
+  &.type-warn svg { fill: @attention; }
+
+  &.type-ok code { color: @mantis; }
+  &.type-err code { color: @failure; }
   &.type-info code { color: @information; }
+  &.type-warn code { color: @attention; }
 }
 blockquote p:first-child { margin-top: 0; }
 blockquote p:last-child { margin-bottom: 0; }
@@ -68,9 +59,7 @@ pre code {
   display: block;
   padding: .5rem;
 }
-p code {
-  color: @spring-bud;
-}
+p code { color: @white; }
 ul, ol { padding-left: 2rem; }
 small { font-size: .8rem; }
 code {
@@ -83,7 +72,7 @@ code {
 .meteorite {
   text-align: center;
   svg {
-    max-width: 66%;
+    max-width: 87%;
   }
   a {
     transition: color .5s;
@@ -122,9 +111,10 @@ code {
 
 .body {
   padding: 1rem;
-  max-width: 640px;
   margin: auto;
   margin-bottom: 50px;
+
+  &.min { max-width: 33em; }
 
   h1, h2, h3, h4 {
     .dimmed;
@@ -133,7 +123,9 @@ code {
 
 .flex {
   display: flex;
-  .gap { gap: 1rem; }
+  &.gap-sm { gap: 5px; }
+  &.gap-md { gap: 10px; }
+  &.gap-lg { gap: 20px; }
   &.between { justify-content: space-between; }
   &.centered { align-items: center; }
 }

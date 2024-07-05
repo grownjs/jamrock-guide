@@ -16,6 +16,8 @@ html
     import(from='styles.css' inline)
 
   body.reset
+    import(from='sprites.svg')
+
     if NODE_ENV === 'production'
       script.
         /* eslint-disable */
@@ -28,12 +30,10 @@ html
         ga('send', 'pageview');
         /* eslint-enable */
 
-    main.body
+    main.body.min
       .center
         span.welcome {@import from="welcome.svg"}
         h1.meteorite.floating: a(href='/' data-version=pkg.version) {@import from="jamrock-meteorite.svg"}
-
-      hr
 
       block body
         != yield

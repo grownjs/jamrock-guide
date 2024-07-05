@@ -1,0 +1,32 @@
+//-
+  ---
+  $render: partials/blank.pug
+  title: "Jamrock | The herbsman's web framework"
+  ---
+
+h2 Want to give it a try?
+
+p.
+  Jamrock is available through a custom installer,
+  it downloads the package and uncompress it locally at your #[code $HOME], e.g.
+
+pre.hljs: code.
+  curl -L get.jamrock.dev | bash
+  jamrock init my-app
+  cd my-app
+  ./bin/node --version
+  ./bin/node serve --watch --nofswatch
+
+p Once started you should get something like this:
+
+pre.hljs: code.
+  ■ Jamrock v#{pkg.version} (node #{process.version}, ?)
+  Processing ./pages to ./build
+  Listening on #[a(href='http://localhost:8080' target='_blank') http://localhost:8080]
+
+p.
+  Open that URL in your browser and enjoy!
+
+blockquote: p.gap-sm.flex.centered
+  |{@icon src="#beaker" size="20"}
+  span Continue reading the #[a(href='//docs.jamrock.dev') available documentation].
