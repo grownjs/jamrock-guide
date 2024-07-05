@@ -1,22 +1,4 @@
-#sidebar {
-  > .body > ul {
-    display: flex;
-    flex-wrap: wrap;
-
-    > li {
-      min-width: 170px;
-      margin-bottom: 25px;
-    }
-
-    strong .here {
-      &::after {
-        content: ' ▾';
-      }
-    }
-  }
-}
-
-#menu {
+/*#menu {
   z-index: 2;
   right: 30px;
   padding: 5px;
@@ -53,14 +35,17 @@
 
 @media screen and (max-width: 319px) {
   #nav > ul > li { width: 100%; }
-}
+}*/
 
 @media screen and (min-width: 640px) {
   #wrapper {
     overflow: hidden;
+    max-width: 800px;
+    margin: auto;
   }
 
   #sidebar {
+    border-right: 1px dashed @gunmetal;
     overflow: auto;
     position: fixed;
     width: @sidebar;
@@ -72,18 +57,18 @@
     margin-left: @sidebar;
     height: 100%;
     overflow: auto;
-    > main {
-      margin-bottom: 50px;
-    }
+    > main { margin-bottom: 50px; }
   }
 
-  #menu {
+  #nav + div { padding: 20px 0;  }
+
+  /*#menu {
     position: absolute;
     > a {
       display: none;
     }
-  }
+  }*/
 }
 
 #nav li:last-child { flex: 1; }
-#sidebar .meteorite svg { max-width: 100%; }
+#sidebar .meteorite { margin: 50px 20px 0 0; }

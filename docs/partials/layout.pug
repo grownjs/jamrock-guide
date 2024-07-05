@@ -6,7 +6,6 @@ html(theme='dark')
   head
     base(href='/')
     meta(charset='utf-8')
-    //- import(from='styles.css')
 
     meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
     meta(name='HandheldFriendly' content='true')
@@ -29,7 +28,7 @@ html(theme='dark')
             = error.stack
             summary= error.message
 
-        #menu.flex
+        //-#menu.flex
           .stork-wrapper
             icon(src='#search' width=16 height=16)
             input.stork-input(data-stork='docs' placeholder='Search...')
@@ -37,7 +36,7 @@ html(theme='dark')
           a(href="`${location.pathname === '/' ? '.' : location.pathname}/#nav`") &#9776;
 
         if title
-          h1 #{title} #[small: a(href=gitUrl target='_blank') &#9998;]
+          h1.flex.gap-sm.centered #{title} #[small: a(href=gitUrl target='_blank') &#9998;]
 
         main!= yield
 
@@ -45,11 +44,11 @@ html(theme='dark')
           if next
             span ➯ Next: #[a#next(href=next.link) #{next.label}]
 
-          a#back(href="`${location.pathname === '/' ? '.' : location.pathname}/#`" onclick='content.scrollTop=0') &uarr; Back to the top
+          a#back(href=(location.pathname === '/' ? '.' : location.pathname) + '/#' onclick='content.scrollTop=0') &uarr; Back to the top
 
       aside#sidebar.noscroll
-        .body.h-full.flex.vertical
-          h1.meteorite.floating
+        .h-full.flex.vertical
+          h2.reset.meteorite.floating
             a(href='.' data-version=pkg.version): import(from='jamrock-meteorite.svg')
 
           include menu
@@ -59,8 +58,9 @@ html(theme='dark')
             a(href='//codecov.io/gh/grownjs/grown' target='_blank'): img(src='//codecov.io/gh/grownjs/grown/branch/master/graph/badge.svg')
             a(href='//github.com/grownjs/grown/actions' target='_blank'): img(src='//github.com/grownjs/grown/workflows/build/badge.svg')
 
-    script(src='//files.stork-search.net/stork.js')
-    script.
-      window.stork.register('docs', 'index.st', {
-        minimumQueryLength: 2,
-      }); // eslint-disable-line
+    //-
+      script(src='//files.stork-search.net/stork.js')
+      script.
+        window.stork.register('docs', 'index.st', {
+          minimumQueryLength: 2,
+        }); // eslint-disable-line

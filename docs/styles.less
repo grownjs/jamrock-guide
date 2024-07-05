@@ -77,6 +77,17 @@ code {
   padding: 0 2px;
   color: @mantis;
 }
+h1 {
+  small {
+    display: none;
+    font-size: 1.2rem;
+    a { text-decoration: none; }
+  }
+  &:hover small { display: block; }
+}
+h1, h2, h3, h4 {
+  .dimmed;
+}
 
 .meteorite {
   text-align: center;
@@ -120,11 +131,12 @@ code {
 
 .links {
   list-style-type: none;
-  ul li + li {
-    margin-top: 10px;
-  }
-  li a::before {
-    content: '▹ ';
+  ul li + li { margin-top: 10px; }
+  li a::before { content: '▹ '; }
+
+  a[aria-current=page] {
+    color: @white;
+    &::before { content: '▾ '; }
   }
 }
 
@@ -139,12 +151,8 @@ code {
   margin: auto;
 
   &.min {
-    max-width: 33em;
+    max-width: 30em;
     margin-bottom: 50px;
-  }
-
-  h1, h2, h3, h4 {
-    .dimmed;
   }
 }
 
