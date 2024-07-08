@@ -74,6 +74,26 @@ pre code {
 }
 p code { color: @white; }
 ul, ol { padding-left: 2rem; }
+ol {
+  list-style: none;
+  counter-reset: steps;
+  li {
+    counter-increment: steps;
+    + li { margin-top: 1rem; }
+    &::before {
+      content: counter(steps);
+      background-color: @mantis;
+      color: @rich-black;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 5px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      line-height: 1.5rem;
+    }
+  }
+}
 small { font-size: .8rem; }
 code {
   background-color: rgba(255, 255, 255, .1);

@@ -4,28 +4,32 @@
   title: "Jamrock | The herbsman's web framework"
   ---
 
+
+p Jamrock is a framework for the server-side,
+
+ol
+  li It compiles your #[code .html] files into components, the markup is transformed into objects that can be called to produce something like an AST.
+  li The server will execute them against the request, the resulting changes are sent as JSON or HTML depending on the context.
+  li The browser will render the HTML as is, but if JavaScript is available the framework will take the JSON response and patch the DOM with the changes, resulting on smoother updates.
+
 h2 Want to give it a try?
 
-p.
-  Jamrock is available through a custom installer,
-  it downloads the package and uncompress it locally at your #[code $HOME], e.g.
+p Use the script below to download the package and uncompress it locally at your #[code $HOME].
 
 pre.hljs: code.
   curl -L get.jamrock.dev | bash
   jamrock init my-app
   cd my-app
-  ./bin/node --version
-  ./bin/node serve --watch --nofswatch
+  bin/node serve --watch
 
-p Once started you should get something like this:
+p You should get something like this:
 
 pre.hljs: code.
   ■ Jamrock v#{pkg.version} (node #{process.version}, ?)
   Processing ./pages to ./build
   Listening on #[a(href='http://localhost:8080' target='_blank') http://localhost:8080]
 
-p.
-  Open that URL in your browser and enjoy!
+p Open that URL in your browser and explore!
 
 blockquote: p.gap-sm.flex.centered
   |{@icon src="#beaker" size="20"}

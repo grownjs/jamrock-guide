@@ -37,7 +37,6 @@ Options:
 
   --watch    Enable file-watching on the development web-server
   --unocss   Enable stylesheet pre-compilation with UnoCSS
-  --fswatch  Use fswatch for file-watching (default is false)
 
   --dts      Produce the .d.ts definitions from web-server routes
   --name     Filter routes by name (contains)
@@ -67,8 +66,6 @@ stored in memory by default, which is intended for development only.
 
 If you want to use UnoCSS make sure you have the appropriate `unocss.config.mjs`
 module on the working directory.
-
-fswatch is just an alternative to chokidar, if you're curious.
 
 > Probably the `.dts` definitions are not useful since Jamrock does not support TypeScript
 > at this time, but we don't know yet, you may found them interesting.
