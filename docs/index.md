@@ -93,13 +93,16 @@ If you don't want to execute certain page through the GET method just use `GET: 
 
 In some cases you may want to run some code prior executing your pages, to enable such behavior you must declare a `use` property.
 
-Then, you can define your own middleware-functions through a `+server.mjs` script, e.g.
-
+Now you can declare your own middleware-functions through a `+server.mjs` script, e.g.
 
 ```js
-export default {
-  csrf: ({ req }) => req.csrfProtect(),
-};
+export default function every(conn) {
+  // `default` handler executes on every request
+}
+
+export async function csrf(conn) {
+  await conn.req.csrfProtect();
+}
 ```
 
 > [!NOTE]
@@ -111,64 +114,82 @@ export default {
 
 ## Request
 
-In order to retrieve more stuff from the request you'll need to access the `jamrock:conn` module:
+In order to retrieve more stuff from the request you'll need to access the `jamrock:conn` module, e.g.
 
 ```html
 <script>
   import { method, headers, redirect } from 'jamrock:conn';
 
-  if (method === 'GET' && !headers.token) {
+  if (method === 'GET' && !headers.has('token')) {
     redirect('/login');
   }
 </script>
+
+<h1>It works.</h1>
 ```
 
-> [!NOTE]
-> FIXME
-
-```js
-
-```
+> [!IMPORTANT]
+> Modules starting with `jamrock:` are available only within page components.
 
 Available properties:
 
 - `req` &mdash; the original `Request` object
-- `store`  &mdash;
-- `method` &mdash;
-- `server` &mdash;
-- `status_code` &mdash;
-- `resp_body` &mdash;
-- `base_url` &mdash;
-- `cookies` &mdash;
-- `session` &mdash;
-- `headers` &mdash;
-- `options` &mdash;
-- `aborted` &mdash;
-- `params` &mdash;
-- `path_info` &mdash;
-- `path_params` &mdash;
-- `body_params` &mdash;
-- `request_path` &mdash;
-- `query_string` &mdash;
-- `query_params` &mdash;
-- `csrf_token` &mdash;
-- `resp_cookies` &mdash;
-- `resp_headers` &mdash;
-- `has_body` &mdash;
-- `has_status` &mdash;
-- `is_xhr` &mdash;
-- `env` &mdash;
+- `store` &mdash; reference to shared `Map` store
+- `method` &mdash; `GET` | `PUT` | `POST` | `PATCH` | `DELETE`
+- `server` &mdash; instantiated server object
+- `status_code` &mdash; get/set the response status code
+- `resp_body` &mdash; get/set the response body
+- `base_url` &mdash; get/set the `<base href="/" />` path
+- `cookies` &mdash; request cookies as object
+- `headers` &mdash; request headers as object
+- `session` &mdash; saved session from store
+- `options` &mdash; framework options
+- `aborted` &mdash; `true` if request has ended
+- `params` &mdash; mixed _path_, _query_ and _body_ params
+- `path_info` &mdash; list of path segments
+- `path_params` &mdash; route parameters
+- `body_params` &mdash; request body as object
+- `request_path` &mdash; requested url's pathname
+- `query_string` &mdash; requested url's query string
+- `query_params` &mdash; requested url's query as object
+- `csrf_token` &mdash; calculated token for the request
+- `resp_cookies` &mdash; response cookies (readonly)
+- `resp_headers` &mdash; response headers (readonly)
+- `has_body` &mdash; `true` if the response has a body value
+- `has_status` &mdash; `true` if the response has a status code
+- `is_xhr` &mdash; `true` if the request is `XMLHttpRequest`
+- `env` &mdash; safe copy of `process.env` (readonly)
 
 Available methods:
 
-- `cookie(key, value, options)` &mdash;
-- `header(key, value)` &mdash;
-- `redirect(url, code)` &mdash;
-- `flash(type, value)` &mdash;
-- `protect(value)` &mdash;
-- `unsafe(value)` &mdash;
-- `toJSON()` &mdash;
+- `cookie(key, value, options)` &mdash; set response cookies
+- `header(key, value)` &mdash; set response headers
+- `redirect(url, code)` &mdash; ends request with a redirection
+- `flash(type, value)` &mdash; writes to the session flash
+- `raise(code, message)` &mdash; ends the request as failure
+- `protect(value)` &mdash; decorate an unsafe value
+- `unsafe(value)` &mdash; `true` if value is already unsafe
+- `toJSON()` &mdash; serialized verson of the `conn` object (safe)
+
+> [!NOTE]
+> Unsafe values are omitted if found during the rendering of page components,
+> it prevents from leaking sensitive values by mistake.
 
 ## Response
 
-X
+We have server routes, actions, handlers and middleware.
+
+They all are functions and they can return anything:
+
+- `number`
+- `string`
+- `{ ... }`
+- `[number, string, { ... }]`
+- `new Response(string | null, ...)`
+
+In turn, page components will return an AST that can be serialized as HTML or sent as JSON.
+
+> [!TIP]
+>
+> Besides components you can still do a lot of things in several ways,
+> try keeping things separated but not too much!
