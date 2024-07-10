@@ -10,6 +10,8 @@ Jamrock will enable you to write web apps once, you won't need to deal with back
 
 The idea is straight-forward: run everything on the server-side.
 
+Well, if it's possible to use JavaScript, some stuff may run on the browser too!
+
 ## The building blocks
 
 We have a couple of concepts to learn before digging:
@@ -55,12 +57,17 @@ Pages can declare its own routes as well method handlers, to allow a certain met
     // middleware to invoke, see below
     use: ['csrf'],
 
+    // allow for POST requests, no action
     POST: true,
+
+    // action for DELETE requests
     DELETE() {
       // do something
     },
-    ['GET /:article_id'] as get.Article() {
-      // do something
+
+    // route-handlers for this component
+    ['GET /:article_id'](articleId) {
+      console.log({ articleId });
     },
 
     catch(e) {
@@ -82,16 +89,14 @@ By default all pages will respond to GET requests, depending on their handlers t
 If you don't want to execute certain page through the GET method just use `GET: false` to disable it.
 
 > [!NOTE]
-> Handlers using the syntax `['METHOD /path/with/:params'] as named_route` are also registered as routes for the page,
+> Handlers using the syntax `['METHOD /path/with/:params']` are also registered as routes for the page,
 > all declared parameters will be passed as arguments.
 >
 > If you declare a `catch` or `finally` handler they'll be called as result of evaluating the requested handlers.
 >
 > Additional handlers may be invoked if they match a requested action, usually from a `<form action="?/someAction">` declaration.
 
-## Middleware
-
-In some cases you may want to run some code prior executing your pages, to enable such behavior you must declare a `use` property.
+In some cases you may want to run some code prior executing your handlers, to enable such behavior you must declare a `use` property.
 
 Now you can declare your own middleware-functions through a `+server.mjs` script, e.g.
 
@@ -110,7 +115,7 @@ export async function csrf(conn) {
 >
 > These functions will receive the `jamrock:conn` as first argument, any given options will be passed as the second argument.
 >
-> Options must be set as nested arrays, e.g. `use: [['name', { option: 'value' }]]`
+> Options are set like this, e.g. `use: [['name', { ... }]]`
 
 ## Request
 
@@ -131,7 +136,12 @@ In order to retrieve more stuff from the request you'll need to access the `jamr
 > [!IMPORTANT]
 > Modules starting with `jamrock:` are available only within page components.
 
-Available properties:
+Requests to page components will always render something,
+however `redirect` calls can stop any further rendering.
+
+There are more methods that can do the same, see:
+
+#### Available properties
 
 - `req` &mdash; the original `Request` object
 - `store` &mdash; reference to shared `Map` store
@@ -160,14 +170,14 @@ Available properties:
 - `is_xhr` &mdash; `true` if the request is `XMLHttpRequest`
 - `env` &mdash; safe copy of `process.env` (readonly)
 
-Available methods:
+#### Available methods
 
 - `cookie(key, value, options)` &mdash; set response cookies
 - `header(key, value)` &mdash; set response headers
 - `redirect(url, code)` &mdash; ends request with a redirection
-- `flash(type, value)` &mdash; writes to the session flash
+- `flash(group, message)` &mdash; writes to the session flash
 - `raise(code, message)` &mdash; ends the request as failure
-- `protect(value)` &mdash; decorate an unsafe value
+- `protect(value)` &mdash; decorates an unsafe value
 - `unsafe(value)` &mdash; `true` if value is already unsafe
 - `toJSON()` &mdash; serialized verson of the `conn` object (safe)
 
