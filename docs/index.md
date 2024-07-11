@@ -139,7 +139,7 @@ In order to retrieve more stuff from the request you'll need to access the `jamr
 Requests to page components will always render something,
 however `redirect` calls can stop any further rendering.
 
-There are more methods that can do the same, see:
+Below is a list of all sort of things you may use:
 
 #### Available properties
 
