@@ -98,20 +98,32 @@ If you don't want to execute certain page through the GET method just use `GET: 
 
 In some cases you may want to run some code prior executing your handlers, to enable such behavior you must declare a `use` property.
 
-Now you can declare your own middleware-functions through a `+server.mjs` script, e.g.
+Then, define some functions through a `+server.mjs` script, e.g.
 
 ```js
-export default function every(conn) {
-  // `default` handler executes on every request
+export function http(conn) {
+  // `http` handler executes on every request!
 }
 
-export async function csrf(conn) {
-  await conn.req.csrfProtect();
+export function csrf(conn) {
+  conn.req.csrfProtect();
 }
+
+export default {
+  ['GET /some/:stuff']({ params }) {
+    console.log('Got', params.stuff);
+  },
+};
 ```
 
+This way you can setup shared behaviour in your applications,
+like authentication, shared props or state, etc.
+
+Routes declared on the `export default` object are evaluated if they match,
+here is where you need to place api-routes as they don't require a page to exists.
+
 > [!NOTE]
-> This `+server.mjs` can be placed at any level within the pages directory, following the same strategy as `+layout.html` or `+error.html` resolution.
+> The `+server.mjs` file can be placed at any level within the pages directory, following the same strategy as `+layout.html` or `+error.html` resolution.
 >
 > These functions will receive the `jamrock:conn` as first argument, any given options will be passed as the second argument.
 >
