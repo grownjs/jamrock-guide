@@ -18,13 +18,14 @@ p Use the script below to download the package and uncompress it locally at your
 pre.hljs: code.
   curl -L get.jamrock.dev | bash
   jamrock init my-app
+  ...
   cd my-app
-  bin/node serve --watch
+  jamrock dev
 
 p You should get something like this:
 
 pre.hljs: code.
-  ■ Jamrock v#{pkg.version} (node #{process.version}, ?)
+  ■ Jamrock v#{pkg.version} (node #{process.version})
   Processing ./pages to ./build
   Listening on #[a(href='http://localhost:8080' target='_blank') http://localhost:8080]
 
