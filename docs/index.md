@@ -203,15 +203,18 @@ We have server routes, actions, handlers and middleware.
 
 They all are functions and they can return anything:
 
-- `number`
-- `string`
-- `{ ... }`
-- `[number, string, { ... }]`
-- `new Response(string | null, ...)`
+- `number` &mdash; just the status-code, without body
+- `string` &mdash; just the body, ends with a `200 OK`
+- `{ ... }` &mdash; object-like values will be sent as JSON
+- `[number, string, { ... }]` &mdash; status, body, and headers
+- `new Response(string | null, ...)` &mdash; standarized `Response`
 
 In turn, page components will return an AST that can be serialized as HTML or sent as JSON.
 
-> [!TIP]
+> [!IMPORTANT]
 >
-> Besides components you can still do a lot of things in several ways,
-> try keeping things separated but not too much!
+> If you want to return an array, like a list of values, use an object with a property
+> containing its value instead.
+>
+> Otherwise, the framework will try to extract the `status`, `body`,
+> and `headers` parameters from your value.
