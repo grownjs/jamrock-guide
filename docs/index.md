@@ -16,8 +16,8 @@ Well, if it's possible to use JavaScript, some stuff may run on the browser too!
 
 We have a couple of concepts to learn before digging:
 
-1. Routes are the entry-point for our application, and they are defined through page components.
-2. Route handlers are taken from the `default export` object from evaluated pages.
+1. Routes are the entry-point for our application, and they are defined through pages or middleware.
+2. Route handlers are taken from the `default export` object on evaluated modules.
 3. The `Request` object is available through the `jamrock:conn` module.
 4. The `Response` is calculated by the framework.
 
@@ -66,8 +66,8 @@ Pages can declare its own routes as well method handlers, to allow a certain met
     },
 
     // route-handlers for this component
-    ['GET /:article_id'](articleId) {
-      console.log({ articleId });
+    ['GET /:article_id']({ article_id }) {
+      console.log({ article_id });
     },
 
     catch(e) {
