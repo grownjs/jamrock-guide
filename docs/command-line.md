@@ -15,15 +15,12 @@ through the requested runtime, make sure you have Deno, Bun or NodeJS as needed.
 Additional arguments like `FOO=bar` will expand the `process.env` object,
 e.g. `jamrock build NODE_ENV=production PORT-80`
 
-Some options can be negated, e.g. `--nounocss` or `--noredis`
-to disable them if needed.
-
 ## Usage info
 
 Without arguments, the executable will yield something like this:
 
 ```text
-■ Jamrock v0.0.0 (node v22.4.0)
+■ Jamrock v0.0.0 (node v22.4.0, #[GIT_REVISION])
 
 Usage: ./bin/{node,deno,bun} <COMMAND> [OPTIONS]
 
@@ -82,3 +79,5 @@ Just make sure you have built your pages first.
 > If you want to use UnoCSS make sure you have the appropriate `unocss.config.mjs`
 > module on the `./pages` directory, stylesheets will be calculated from the
 > used classes by rendered components on every request.
+>
+> Both are enabled by default, use `--no*` flags to disable them.
