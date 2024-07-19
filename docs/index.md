@@ -110,24 +110,34 @@ export function csrf(conn) {
 }
 
 export default {
-  ['GET /some/:stuff']({ params }) {
-    console.log('Got', params.stuff);
+  ['GET /some/:stuff'](conn) {
+    console.log('Got', conn.params.stuff);
   },
+
+  catch(e, conn) {
+    // do something
+  },
+  finally(response, conn) {
+    return response;
+  }
 };
 ```
 
 This way you can setup shared behaviour in your applications,
 like authentication, shared props or state, etc.
 
-Routes declared on the `export default` object are evaluated if they match,
-here is where you need to place api-routes as they don't require a page to exists.
+- Routes declared on the `export default` object are evaluated if they match,
+  here is where you need to place api-routes as they don't require a page to exists.
+- The `+server.mjs` file can be placed at any level within the pages directory, following the same strategy as `+layout.html` or `+error.html` resolution.
+- These functions will receive the `jamrock:conn` first, any given options will be passed as the second argument.
+  Those options should be set like this, e.g. `use: [['name', { ... }]]`
 
-> [!NOTE]
-> The `+server.mjs` file can be placed at any level within the pages directory, following the same strategy as `+layout.html` or `+error.html` resolution.
->
-> These functions will receive the `jamrock:conn` as first argument, any given options will be passed as the second argument.
->
-> Options are set like this, e.g. `use: [['name', { ... }]]`
+You can define `catch` and `finally` handlers on the `export default` object as well,
+they'll receive the error/response and connection respectively.
+
+> [!WARNING]
+> Make sure you return the given or modified `response` argument in your `finally` handler,
+> the framework relies on this value to build the final response.
 
 ## Request
 
