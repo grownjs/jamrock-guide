@@ -9,10 +9,8 @@ next:
 This `./bin/{node,deno,bun}` executable will use the installed version of the framework
 through the requested runtime, make sure you have Deno, Bun or NodeJS as needed.
 
-By default `jamrock` will call the NodeJS wrapper.
-
-> [!TIP]
-> We'll use `jamrock` as the executable for brevity.
+> [!NOTE]
+> By default `jamrock` will call the NodeJS wrapper.
 
 Additional arguments like `FOO=bar` will expand the `process.env` object,
 e.g. `jamrock build NODE_ENV=production PORT-80`
