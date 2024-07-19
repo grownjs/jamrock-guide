@@ -26,12 +26,12 @@ We have a couple of concepts to learn before digging:
 Files ending with `+page.html` will be used to declare routes,
 they're transformed using the following rules:
 
-| Filename | URL |
+| Filename | Route |
 | - | - |
 | `pages/index+page.html` | `/` |
 | `pages/login+page.html` | `/login` |
-| `pages/(lang).blog+page.html` | `/blog` |
-| `pages/($lang).blog+page.html` | `/es/blog` |
+| `pages/(lang).blog+page.html` | `/:lang?/blog` |
+| `pages/($lang).blog+page.html` | `/:lang?/blog` |
 | `pages/hello.[name]+page.html` | `/hello/:name` |
 | `pages/posts/$post_id+page.html` | `/posts/:post_id` |
 | `pages/_site/sitemap[.xml]+page.html` | `/sitemap.xml` |
