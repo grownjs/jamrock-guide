@@ -37,7 +37,7 @@ Options:
   --port     The port number to bind the web-server
   --host     The host address to bind the web-server
 
-  --uws      Use uWebSockets.js instead of native HTTP (nodejs)
+  --uws      Use uWebSockets.js instead of native HTTP (node)
   --redis    Enable redis for sessions and pub/sub events
   --unocss   Enable stylesheet pre-compilation with UnoCSS
 
@@ -64,7 +64,7 @@ You can have other stuff on this folder but it will be ignored, only `.html` fil
 > The command above will not fail even if the directory does not exists,
 > the watcher will work as you start placing files there.
 >
-> Try `jamrock dev` as shortcut for `server --watch`.
+> Try `jamrock dev` as shortcut for this task.
 
 ## Production
 
@@ -79,5 +79,3 @@ Just make sure you have built your pages first.
 > If you want to use UnoCSS make sure you have the appropriate `unocss.config.mjs`
 > module on the `./pages` directory, stylesheets will be calculated from the
 > used classes by rendered components on every request.
->
-> Both are enabled by default, use `--no*` flags to disable them.
